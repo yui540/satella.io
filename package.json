@@ -1,0 +1,19 @@
+{
+  "name": "satella.io",
+  "version": "1.0.0",
+  "description": "modeling application",
+  "main": "core.js",
+  "keywords": [
+    "satella.io"
+  ],
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . satella --icon=icon.ico --platform=darwin --arch=x64 --version=1.3.8"
+  },
+  "dependencies": {
+    "coffee-script": "^1.9.2",
+    "electron-prebuilt": "^0.26.0"
+  },
+  "author": "yuki540",
+  "homepage": "http://yuki540.com"
+}

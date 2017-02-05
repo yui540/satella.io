@@ -1,0 +1,14 @@
+/**
+ *
+ * @author sawamura spencer eriri
+ * font.css
+ *
+ */
+@font-face {
+  	font-family: 'Boku';
+    src: url('font/Boku.eot');
+    src: url('font/Boku.eot?iefix') format('eot'),
+         url('font/Boku.woff') format('woff'),
+         url('font/Boku.ttf') format('truetype'),
+         url('font/Boku.otf') format('opentype');
+}
