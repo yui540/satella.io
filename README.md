@@ -1,4 +1,4 @@
-# satella.io
+# satella_io
 
 ![preview1](sample/s1.png)
 
