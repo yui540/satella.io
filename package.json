@@ -1,10 +1,10 @@
 {
-  "name": "satella.io",
-  "version": "1.0.0",
-  "description": "modeling application",
+  "name": "satella_io",
+  "version": "0.0.1",
+  "description": "Live2dライクなオープンソースソフトウェア「satella_io」",
   "main": "core.js",
   "keywords": [
-    "satella.io"
+    "satella_io"
   ],
   "scripts": {
     "start": "electron .",
