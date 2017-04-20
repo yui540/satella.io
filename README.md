@@ -2,6 +2,18 @@
 
 ![preview1](sample/s1.png)
 
+## 動作確認
+動作の動画は、Twitterをご確認ください。
+[https://twitter.com/eriri_jp/status/828140972429029376](https://twitter.com/eriri_jp/status/828140972429029376)
+
+## Qiita記事
+このソフトウェアの記事はQiitaにあります。
+[http://qiita.com/yuki540/items/87d4f960702672b829b8](http://qiita.com/yuki540/items/87d4f960702672b829b8)
+
+## スライド
+在学中の作品発表会で登壇した時のスライドは、ニコナレにあります。
+[http://niconare.nicovideo.jp/watch/kn2342](http://niconare.nicovideo.jp/watch/kn2342)
+
 ## Live2Dライクなオープンソースソフトウェア
 Live2Dのようなソフトを作ってみたいと思い、electronでそれっぽいものを作りました。
 同じようなことをしようとしている人のヒントにでもなれば幸いです。
