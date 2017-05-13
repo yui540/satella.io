@@ -9,8 +9,6 @@
 
 - satella.ioについての紹介ページ
   - [Qiita - Live2Dライクなオープンソースソフトウェアの開発](http://qiita.com/yuki540/items/87d4f960702672b829b8)
-- satella.ioのダウンロード
-  - [GitHub - Releases](https://github.com/yuki540net/satella.io/releases/tag/v0.0.1)
 - デモ動画
   - [Twitter - 「satella.io」のデモ動画](https://twitter.com/eriri_jp/status/828140972429029376)
 - 発表スライド
