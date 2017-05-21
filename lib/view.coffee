@@ -267,8 +267,8 @@ class View
 	# @param pos3 : 点3
 	##
 	drawLine3: (pos1, pos2, pos3) ->
-		@ctx.beginPath()
 		@ctx.save()
+		@ctx.beginPath()
 		@ctx.strokeStyle = '#ff0000'
 		@ctx.lineWidth   = 0.5
 		@ctx.setLineDash [3, 3]
@@ -302,5 +302,6 @@ class View
 
 		return true
 
-
-	
+try
+	module.exports = View
+catch

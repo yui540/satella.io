@@ -641,5 +641,6 @@ class Satella
 
 		return true
 
-
-
+try
+	module.exports = Satella
+catch
