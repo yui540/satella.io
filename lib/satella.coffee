@@ -3,17 +3,14 @@ class Satella
 		# camera
 		@scale = 5.35
 
+		# canvas
+		@webgl = params.canvas
+		@gl    = @webgl.getContext 'webgl', { preserveDrawingBuffer: true }
+
 		# size
 		@width  = params.width
 		@height = params.height
-		params.canvas.width  = @width
-		params.canvas.height = @height
-
-		# webgl
-		@webgl = params.canvas
-		@gl    = @webgl.getContext 'webgl', { 
-			preserveDrawingBuffer: true
-		}
+		@resize @width, @height
 
 		# shader & program object
 		v_shader = @createShader 'vs', @getVertexShader()
@@ -45,12 +42,12 @@ class Satella
 		@mvp_matrix = @identity @create()
 
 		# resource
+		@images  = {}
+		@texture = {}
 		@json    = {
 			meta  : [],
 			layer : []
 		}
-		@images  = {}
-		@texture = {}
 
 		# listener
 		@listeners = []
@@ -227,6 +224,20 @@ class Satella
 		val  = p1 + diff
 
 		return val
+
+	##
+	# サイズの変更
+	# @param width  : 幅
+	# @param height : 高さ
+	##
+	resize: (width, height) ->
+		@width        = width
+		@height       = height
+		@webgl.width  = @width
+		@webgl.height = @height
+
+		@gl.viewport 0, 0, @width, @height
+		return true
 
 	##
 	# 深度
@@ -492,16 +503,8 @@ class Satella
  			@gl.UNSIGNED_BYTE, 
  			img
  		)
- 		@gl.texParameteri(
- 			@gl.TEXTURE_2D,
- 			@gl.TEXTURE_MAG_FILTER,
- 			@gl.LINEAR
- 		)
- 		@gl.texParameteri(
- 			@gl.TEXTURE_2D,
- 			@gl.TEXTURE_MIN_FILTER,
- 			mipmap
- 		)
+ 		@gl.texParameteri @gl.TEXTURE_2D, @gl.TEXTURE_MAG_FILTER, @gl.LINEAR
+ 		@gl.texParameteri @gl.TEXTURE_2D, @gl.TEXTURE_MIN_FILTER, mipmap 
  		@gl.generateMipmap @gl.TEXTURE_2D
  		@gl.bindTexture @gl.TEXTURE_2D, null
 
@@ -540,9 +543,9 @@ class Satella
 	loadResource: (params) ->
 		img     = new Image()
 		img.src = params.path
+		num     = @json.layer.length - 1
 
 		img.onload = =>
-			num = @json.layer.length - 1
 
 			# 初期の頂点座標
 			position = @createPositionAttr params.mesh, params.pos, params.size
@@ -559,8 +562,6 @@ class Satella
 			# イベント発火
 			@emit 'add', { name: params.name }
 
-			@render()
-
 	##
 	# 画面クリア
 	##
@@ -568,26 +569,20 @@ class Satella
 		@gl.clearColor 0.0, 0.0, 0.0, 0.0
 		@gl.clearDepth 1.0
 		@gl.clear @gl.COLOR_BUFFER_BIT | @gl.DEPTH_BUFFER_BIT
+
 		return true
 
 	##
 	# ビュー&プロジェクション
 	##
 	viewMatrix: ->
-		@lookAt(
-			[0.0, 0.0, @scale],
-			[0.0, 0.0, 0.0],
-			[0.0, 1.0, 0.0], 
+		@lookAt([0.0, 0.0, @scale], [0.0, 0.0, 0.0], [0.0, 1.0, 0.0], 
 			@v_matrix
 		)
-		@perspective(
-			50, 
-			@width / @height,
-			0.1,
-			100,
+		@perspective(50, @width / @height, 0.1, 100,
 			@p_matrix
 		)
-		@multiply @p_matrix, @v_matrix, @tmp_matrix
+		@multiply @p_matrix,   @v_matrix, @tmp_matrix
 		@multiply @tmp_matrix, @m_matrix, @mvp_matrix
 
 	##
@@ -598,41 +593,27 @@ class Satella
 		@viewMatrix()
 		@blendType()
 		@gl.enable @gl.BLEND
-		console.log @json.layer.length
 
 		for layer, num in @json.layer
 			position      = layer.position[0]
 			color         = layer.color
 			texture_coord = layer.texture_coord
 			index         = layer.index
+			view.render position, layer.mesh
 
 			vPosition     = @createVBO position
 			vColor        = @createVBO color
 			vTextureCoord = @createVBO texture_coord
 			iIndex        = @createIBO index
 
-			@setAttribute(
-				vPosition,
-				@attLocation.position,
-				@attStride.position
-			)
-			@setAttribute(
-				vColor,
-				@attLocation.color,
-				@attStride.color
-			)
-			@setAttribute(
-				vTextureCoord,
-				@attLocation.texture
-				@attStride.texture
-			)
+			@setAttribute vPosition,     @attLocation.position, @attStride.position
+			@setAttribute vColor,        @attLocation.color,    @attStride.color
+			@setAttribute vTextureCoord, @attLocation.texture,  @attStride.texture
 
 			@gl.bindTexture @gl.TEXTURE_2D, @texture[layer.name]
 
 			@gl.uniformMatrix4fv @uniLocation.mvpMatrix, false, @mvp_matrix
 			@gl.uniform1f @uniLocation.vertexAlpha, 1.0
-			@gl.uniform1i @uniLocation.texture, 0
-			@gl.uniform1i @uniLocation.useTexture, true
 			@gl.bindBuffer @gl.ELEMENT_ARRAY_BUFFER, iIndex
 
 			@gl.drawElements(
@@ -644,7 +625,9 @@ class Satella
 
 			@gl.bindTexture @gl.TEXTURE_2D, null
 			@gl.bindBuffer @gl.ELEMENT_ARRAY_BUFFER, null
+
 		@gl.flush()
+		return true
 
 
 

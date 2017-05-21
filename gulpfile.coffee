@@ -11,7 +11,7 @@ gulp.task 'library', ->
 	gulp.src 'lib/*.coffee'
 		.pipe plumber()
 		.pipe coffee { bare: true }
-		.pipe uglify()
+		#.pipe uglify()
 		.pipe gulp.dest 'lib/'
 
 # watch
