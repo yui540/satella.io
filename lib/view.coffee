@@ -19,6 +19,39 @@ class View
 			x            : @x, 
 			y            : @y
 
+		# listeners
+		@listeners = []
+
+		# position
+		@position = []
+
+		# イベント紐付け
+		@bindEvent()
+
+	##
+	# イベントリスナの追加
+	# @param event : イベント名
+	# @param fn    : コールバック関数
+	##
+	on: (event, fn) ->
+		@listeners.push 
+			event : event
+			fn    : fn
+
+		return true
+
+	##
+	# イベントの発火
+	# @param event : イベント名
+	# @param data  : データ
+	##
+	emit: (event, data) ->
+		for listener in @listeners
+			if event is listener.event
+				listener.fn data
+
+		return true
+
 	##
 	# サイズの変更
 	# @param params : 
@@ -36,6 +69,67 @@ class View
 		return true
 
 	##
+	# 範囲内かチェック
+	# @param _x : 対象のx座標
+	# @param _y : 対象のy座標
+	# @param x  : x座標
+	# @param y  : y座標
+	##
+	checkVertex: (_x, _y, x, y) ->
+		r = 5
+		if ((_x - 5) <= x) and ((_x + 5) >= x) and ((_y - 5) <= y) and ((_y + 5) >= y)
+			return true
+		else
+			return false
+
+	##
+	# イベントの紐付け
+	##
+	bindEvent: ->
+		@eventVertex()
+
+	##
+	# 頂点モードのイベント
+	##
+	eventVertex: ->
+		down = false
+
+		# mouse down -------------------------------------------------
+		@canvas.addEventListener 'mousedown', (e) =>
+			c    = 0
+			rect = @canvas.getBoundingClientRect()
+			x    = e.clientX - rect.left
+			y    = e.clientY - rect.top
+
+			for i in [0...@position.length] by 3
+				_x   = @position[i]
+				_y   = @position[i + 1]
+				bool = @checkVertex _x, _y, x, y
+
+				if bool
+					down = c
+					pos  = @decode _x, _y
+					@emit 'vertex-down', { num: c, pos: pos }
+
+				c += 1
+
+		# mouse move -------------------------------------------------
+		window.addEventListener 'mousemove', (e) =>
+			if down is false
+				return
+
+			rect = @canvas.getBoundingClientRect()
+			x    = e.clientX - rect.left
+			y    = e.clientY - rect.top
+			pos  = @decode x, y
+			@emit 'vertex-move', { num: down, pos: pos }
+
+		# mouse up   -------------------------------------------------
+		window.addEventListener 'mouseup', (e) =>
+			down = false
+			@emit 'vertex-up', {}
+
+	##
 	# クリア
 	##
 	clear: ->
@@ -51,6 +145,7 @@ class View
 	# @param mesh     : メッシュ数
 	##
 	render: (position, mesh) ->
+		@position = @encodeAll position
 		@clear()
 
 		for y in [0...mesh]
@@ -119,6 +214,10 @@ class View
 	# @return pos
 	##
 	decode: (x, y) ->
+		x  -= @x
+		y  -= @y
+		x   = x / @webgl_width
+		y   = y / @webgl_height
 		x   = 5 * x
 		y   = 5 * y
 		x   = x - 2.5

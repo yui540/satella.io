@@ -629,7 +629,17 @@ class Satella
 		@gl.flush()
 		return true
 
+	##
+	# 頂点の移動（単体）
+	# @param layer : レイヤー番号
+	# @param num   : 頂点番号
+	# @param pos   : 位置情報
+	##
+	moveVertex: (layer, num, pos) ->
+		@json.layer[layer].position[0][num * 3]     = pos.x
+		@json.layer[layer].position[0][num * 3 + 1] = pos.y
 
+		return true
 
 
 
