@@ -5,12 +5,22 @@ top.observer = riot.observable()
 
 require '../component/js/application'
 require '../component/js/title-bar'
+require '../component/js/editor'
 require '../component/js/workspace'
+require '../component/js/status-bar'
+require '../component/js/tool-bar'
+require '../component/js/tool-icon'
+require '../component/js/scroll-bar-side'
+require '../component/js/scroll-bar-ver'
+require '../component/js/mode-bar'
 
 # load -------------------------------------------------
 window.addEventListener 'load', ->
 	size = getSize()
 	riot.mount 'application', size
+
+	satella.on 'add', ->
+		satella.render()
 
 # resize -----------------------------------------------
 window.addEventListener 'resize', ->
@@ -24,7 +34,7 @@ window.addEventListener 'resize', ->
 top.getSize = ->
 	width  = window.innerWidth
 	height = window.innerHeight
-	width  = if(width >= 1100) then width else 1100
+	width  = if(width >= 1100) then width  else 1100
 	height = if(height >= 650) then height else 650
 	size   = { width: width, height: height }
 

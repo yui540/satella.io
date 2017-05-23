@@ -1,16 +1,21 @@
-application(
+editor(
 	style="width:{ width }px;height:{ height }px"
 )
-	title-bar
-	editor(
+	workspace(
 		width="{ width }"
+		height="{ height }"
+	)
+	tool-bar(
 		height="{ height }"
 	)
 
 	style(scoped).
 		:scope {
-			position: relative;
+			position: absolute;
+			top: 41px;
+			left: 0;
 			display: block;
+			overflow: hidden;
 		}
 
 	script(type="coffee").
@@ -18,11 +23,11 @@ application(
 		# mount ---------------------------------------------
 		@on 'mount', ->
 			@width  = parseInt opts.width
-			@height = parseInt opts.height
+			@height = parseInt opts.height - 41
 			@update()
 
 		# resize --------------------------------------------
 		observer.on 'resize', (params) =>
 			@width  = params.width
-			@height = params.height
+			@height = params.height - 41
 			@update()

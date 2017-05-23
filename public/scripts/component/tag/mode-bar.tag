@@ -1,28 +1,25 @@
-application(
-	style="width:{ width }px;height:{ height }px"
+mode-bar(
+	style="width:{ width }px"
 )
-	title-bar
-	editor(
-		width="{ width }"
-		height="{ height }"
-	)
 
 	style(scoped).
 		:scope {
-			position: relative;
+			position: absolute;
+			bottom: 5px;
+			left: 5px;
+			height: 35px;
 			display: block;
+			background-color: #444;
 		}
 
 	script(type="coffee").
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
-			@width  = parseInt opts.width
-			@height = parseInt opts.height
+			@width = parseInt opts.width - 551
 			@update()
 
 		# resize --------------------------------------------
 		observer.on 'resize', (params) =>
-			@width  = params.width
-			@height = params.height
+			@width = parseInt params.width - 551
 			@update()

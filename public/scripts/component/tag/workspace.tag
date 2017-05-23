@@ -1,18 +1,44 @@
 workspace(
-	style="width:{ width }px;height:{ height }px"
+	style="width:{ _width }px;height:{ _height }px"
 )
-	canvas#satella(
-		style="left:{ x }px;top:{ y }px"
+	status-bar
+	div.canvas(
+		style="width:{ c_width }px;height:{ c_height }px"
 	)
-	canvas#view
+		canvas#satella(
+			style="left:{ x }px;top:{ y }px"
+		)
+		canvas#view
+	scroll-bar-ver(
+		iname="camera-move-y"
+		height="{ height }"
+		per="0.5"
+	)
+	scroll-bar-side(
+		iname="camera-move-x"
+		width="{ width }"
+		per="0.5"
+	)
+	mode-bar(
+		width="{ width }"
+	)
 
 	style(scoped).
 		:scope {
 			position: absolute;
-			top: 41px;
+			top: 0;
 			right: 41px;
 			display: block;
 			background-color: #333;
+			animation: show 0.5s ease 0s forwards;
+			transform: scale(0.9);
+			-webkit-user-select: none;
+		}
+		:scope .canvas {
+			position: absolute;
+			top: 30px;
+			left: 5px;
+			background-color: #555;
 		}
 		:scope #satella {
 			position: absolute;
@@ -20,8 +46,20 @@ workspace(
 		}
 		:scope #view {
 			position: absolute;
-			top: 30px;
+		}
+		:scope scroll-bar-side {
+			position: absolute;
+			bottom: 45px;
 			left: 5px;
+		}
+		:scope scroll-bar-ver {
+			position: absolute;
+			top: 30px;
+			right: 5px;
+		}
+		@keyframes show {
+			0%   { transform: scale(0.9); }
+			100% { transform: scale(1.0); }
 		}
 
 	script(type="coffee").
@@ -33,8 +71,8 @@ workspace(
 		# @return size
 		##
 		@getViewSize = (width, height) ->
-			_width  = width  - 30
-			_height = height - 90
+			_width  = width  - 30 - 541
+			_height = height - 95 - 71
 			size    = { width: _width, height: _height }
 
 			return size
@@ -46,18 +84,14 @@ workspace(
 		# @return size
 		##
 		@getSatellaSize = (width, height) ->
-			_width  = 0
-			_height = 0
-			x       = 0
-			y       = 0
+			_width  = 0; _height = 0
+			x       = 0; y       = 0
 
 			if width > height
-				_width  = height
-				_height = height
+				_width  = height; _height = height
 				x       = (width - height) / 2
 			else
-				_width  = width
-				_height = width
+				_width  = width;  _height = width
 				y       = (height - width) / 2
 
 			size = { width: _width, height: _height, x: x, y: y }
@@ -65,13 +99,16 @@ workspace(
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
-			@width    = parseInt opts.width  - 541
-			@height   = parseInt opts.height - 112 
-
-			v_size = @getViewSize @width, @height
-			s_size = @getSatellaSize v_size.width, v_size.height
-			@x     = s_size.x + 5
-			@y     = s_size.y + 30
+			@width    = parseInt opts.width
+			@height   = parseInt opts.height
+			@_width   = @width  - 541
+			@_height  = @height - 71
+			v_size    = @getViewSize @width, @height
+			s_size    = @getSatellaSize v_size.width, v_size.height
+			@c_width  = v_size.width
+			@c_height = v_size.height
+			@x        = s_size.x
+			@y        = s_size.y
 
 			top.view = new View 
 				canvas       : document.getElementById 'view'
@@ -87,29 +124,33 @@ workspace(
 				width  : s_size.width
 				height : s_size.height
 
-			satella.addLayer
-				name    : 'fsfs'
-				path    : 'http://localhost:8080/img/texture_00.png'
-				quality : 'LINEAR_MIPMAP_LINEAR'
-				mesh    : 8
-				pos     : { x: 0, y: 0 }
-				size    : 1
+			for i in [0..0]
+				satella.addLayer
+					name    : 'fsfs' + i
+					path    : '/img/texture_0' + i + '.png'
+					quality : 'LINEAR_MIPMAP_LINEAR'
+					mesh    : 15
+					pos     : { x: 0, y: 0 }
+					size    : 1
 
 			view.on 'vertex-move', (data) =>
-				satella.moveVertex(0, data.num, data.pos)
+				satella.moveVertex 0, data.num, data.pos
 				satella.render()
 
 			@update()
 
 		# resize --------------------------------------------
 		observer.on 'resize', (params) =>
-			@width    = parseInt opts.width  - 541
-			@height   = parseInt opts.height - 112 
-
-			v_size = @getViewSize @width, @height
-			s_size = @getSatellaSize v_size.width, v_size.height
-			@x     = s_size.x + 5
-			@y     = s_size.y + 30
+			@width    = parseInt opts.width
+			@height   = parseInt opts.height
+			@_width   = @width  - 541
+			@_height  = @height - 71
+			v_size    = @getViewSize @width, @height
+			s_size    = @getSatellaSize v_size.width, v_size.height
+			@c_width  = v_size.width
+			@c_height = v_size.height
+			@x        = s_size.x
+			@y        = s_size.y
 
 			satella.resize s_size.width, s_size.height
 			view.resize 
@@ -121,6 +162,3 @@ workspace(
 				webgl_height : s_size.height
 
 			@update()
-
-
-
