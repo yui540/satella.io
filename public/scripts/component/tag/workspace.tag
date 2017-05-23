@@ -1,13 +1,7 @@
-workspace(
-	style="width:{ _width }px;height:{ _height }px"
-)
+workspace(style="width:{ _width }px; height:{ _height }px")
 	status-bar
-	div.canvas(
-		style="width:{ c_width }px;height:{ c_height }px"
-	)
-		canvas#satella(
-			style="left:{ x }px;top:{ y }px"
-		)
+	div.canvas(style="width:{ c_width }px; height:{ c_height }px")
+		canvas#satella(style="left:{ x }px; top:{ y }px")
 		canvas#view
 	scroll-bar-ver(
 		iname="camera-move-y"
@@ -19,9 +13,7 @@ workspace(
 		width="{ width }"
 		per="0.5"
 	)
-	mode-bar(
-		width="{ width }"
-	)
+	mode-bar(width="{ width }")
 
 	style(scoped).
 		:scope {
@@ -30,9 +22,8 @@ workspace(
 			right: 41px;
 			display: block;
 			background-color: #333;
-			animation: show 0.5s ease 0s forwards;
+			animation: show-workspace 0.5s ease 0s forwards;
 			transform: scale(0.9);
-			-webkit-user-select: none;
 		}
 		:scope .canvas {
 			position: absolute;
@@ -57,7 +48,7 @@ workspace(
 			top: 30px;
 			right: 5px;
 		}
-		@keyframes show {
+		@keyframes show-workspace {
 			0%   { transform: scale(0.9); }
 			100% { transform: scale(1.0); }
 		}

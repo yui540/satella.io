@@ -13,6 +13,11 @@ require '../component/js/tool-icon'
 require '../component/js/scroll-bar-side'
 require '../component/js/scroll-bar-ver'
 require '../component/js/mode-bar'
+require '../component/js/project'
+require '../component/js/animation'
+require '../component/js/parameter'
+require '../component/js/parameter-list'
+require '../component/js/timeline'
 
 # load -------------------------------------------------
 window.addEventListener 'load', ->

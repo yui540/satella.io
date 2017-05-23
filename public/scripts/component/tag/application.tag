@@ -1,6 +1,4 @@
-application(
-	style="width:{ width }px;height:{ height }px"
-)
+application(style="width:{ width }px;height:{ height }px")
 	title-bar
 	editor(
 		width="{ width }"

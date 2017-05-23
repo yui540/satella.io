@@ -2,6 +2,9 @@ html, body {
 	margin: 0;
 	padding: 0;
 	background-color: #888;
+	-moz-user-select: none;
+	-o-user-select: none;
+	-webkit-user-select: none;
 }
 
 body {
