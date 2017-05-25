@@ -22,8 +22,6 @@ workspace(style="width:{ _width }px; height:{ _height }px")
 			right: 41px;
 			display: block;
 			background-color: #333;
-			animation: show-workspace 0.5s ease 0s forwards;
-			transform: scale(0.9);
 		}
 		:scope .canvas {
 			position: absolute;
@@ -47,10 +45,6 @@ workspace(style="width:{ _width }px; height:{ _height }px")
 			position: absolute;
 			top: 30px;
 			right: 5px;
-		}
-		@keyframes show-workspace {
-			0%   { transform: scale(0.9); }
-			100% { transform: scale(1.0); }
 		}
 
 	script(type="coffee").
@@ -120,7 +114,7 @@ workspace(style="width:{ _width }px; height:{ _height }px")
 					name    : 'fsfs' + i
 					path    : '/img/texture_0' + i + '.png'
 					quality : 'LINEAR_MIPMAP_LINEAR'
-					mesh    : 15
+					mesh    : 8
 					pos     : { x: 0, y: 0 }
 					size    : 1
 

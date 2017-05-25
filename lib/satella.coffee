@@ -44,7 +44,7 @@ class Satella
 		# resource
 		@images  = {}
 		@texture = {}
-		@json    = {
+		@model   = {
 			meta  : [],
 			layer : []
 		}
@@ -111,16 +111,16 @@ class Satella
 		E = mat2[4];  F = mat2[5];  G = mat2[6];  H = mat2[7];
 		I = mat2[8];  J = mat2[9];  K = mat2[10]; L = mat2[11];
 		M = mat2[12]; N = mat2[13]; O = mat2[14]; P = mat2[15];
-		dest[0] = A * a + B * e + C * i + D * m;
-		dest[1] = A * b + B * f + C * j + D * n;
-		dest[2] = A * c + B * g + C * k + D * o;
-		dest[3] = A * d + B * h + C * l + D * p;
-		dest[4] = E * a + F * e + G * i + H * m;
-		dest[5] = E * b + F * f + G * j + H * n;
-		dest[6] = E * c + F * g + G * k + H * o;
-		dest[7] = E * d + F * h + G * l + H * p;
-		dest[8] = I * a + J * e + K * i + L * m;
-		dest[9] = I * b + J * f + K * j + L * n;
+		dest[0]  = A * a + B * e + C * i + D * m;
+		dest[1]  = A * b + B * f + C * j + D * n;
+		dest[2]  = A * c + B * g + C * k + D * o;
+		dest[3]  = A * d + B * h + C * l + D * p;
+		dest[4]  = E * a + F * e + G * i + H * m;
+		dest[5]  = E * b + F * f + G * j + H * n;
+		dest[6]  = E * c + F * g + G * k + H * o;
+		dest[7]  = E * d + F * h + G * l + H * p;
+		dest[8]  = I * a + J * e + K * i + L * m;
+		dest[9]  = I * b + J * f + K * j + L * n;
 		dest[10] = I * c + J * g + K * k + L * o;
 		dest[11] = I * d + J * h + K * l + L * p;
 		dest[12] = M * a + N * e + O * i + P * m;
@@ -140,13 +140,13 @@ class Satella
 		if eyeX == centerX && eyeY == centerY && eyeZ == centerZ
 			return @identity dest
 
-		z0 = eyeX - center[0]; z1 = eyeY - center[1]; z2 = eyeZ - center[2];
-		l = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+		z0  = eyeX - center[0]; z1 = eyeY - center[1]; z2 = eyeZ - center[2];
+		l   = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
 		z0 *= l; z1 *= l; z2 *= l;
-		x0 = upY * z2 - upZ * z1;
-		x1 = upZ * z0 - upX * z2;
-		x2 = upX * z1 - upY * z0;
-		l = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+		x0  = upY * z2 - upZ * z1;
+		x1  = upZ * z0 - upX * z2;
+		x2  = upX * z1 - upY * z0;
+		l   = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
 
 		if not l
 			x0 = 0; x1 = 0; x2 = 0;
@@ -163,9 +163,9 @@ class Satella
 			l = 1 / l;
 			y0 *= l; y1 *= l; y2 *= l;
 		
-		dest[0] = x0; dest[1] = y0; dest[2]  = z0; dest[3]  = 0;
-		dest[4] = x1; dest[5] = y1; dest[6]  = z1; dest[7]  = 0;
-		dest[8] = x2; dest[9] = y2; dest[10] = z2; dest[11] = 0;
+		dest[0]  = x0; dest[1] = y0; dest[2]  = z0; dest[3]  = 0;
+		dest[4]  = x1; dest[5] = y1; dest[6]  = z1; dest[7]  = 0;
+		dest[8]  = x2; dest[9] = y2; dest[10] = z2; dest[11] = 0;
 		dest[12] = -(x0 * eyeX + x1 * eyeY + x2 * eyeZ);
 		dest[13] = -(y0 * eyeX + y1 * eyeY + y2 * eyeZ);
 		dest[14] = -(z0 * eyeX + z1 * eyeY + z2 * eyeZ);
@@ -179,16 +179,16 @@ class Satella
 		t = near * Math.tan(fovy * Math.PI / 360);
 		r = t * aspect;
 		a = r * 2; b = t * 2; c = far - near;
-		dest[0] = near * 2 / a;
-		dest[1] = 0;
-		dest[2] = 0;
-		dest[3] = 0;
-		dest[4] = 0;
-		dest[5] = near * 2 / b;
-		dest[6] = 0;
-		dest[7] = 0;
-		dest[8] = 0;
-		dest[9] = 0;
+		dest[0]  = near * 2 / a;
+		dest[1]  = 0;
+		dest[2]  = 0;
+		dest[3]  = 0;
+		dest[4]  = 0;
+		dest[5]  = near * 2 / b;
+		dest[6]  = 0;
+		dest[7]  = 0;
+		dest[8]  = 0;
+		dest[9]  = 0;
 		dest[10] = -(far + near) / c;
 		dest[11] = -1;
 		dest[12] = 0;
@@ -448,6 +448,7 @@ class Satella
 			index.push t2[0] + (i + c)
 			index.push t2[1] + (i + c)
 			index.push t2[2] + (i + c)
+
 		return index
 
 	##
@@ -457,13 +458,13 @@ class Satella
  	# @return atari
  	##
 	initAtari: (position, mesh) ->
- 		p1     = 0
- 		p2     = mesh * 3
- 		p3     = (mesh + 1) * 3 * mesh
- 		p4     = (((mesh + 1) * 3) * mesh) + (mesh * 3)
- 		x      = @rate position[p1], position[p2], 0.5
- 		y      = @rate position[p3 + 1], position[p1 + 1], 0.5
- 		atari  = [x, y]
+ 		p1    = 0
+ 		p2    = mesh * 3
+ 		p3    = (mesh + 1) * 3 * mesh
+ 		p4    = (((mesh + 1) * 3) * mesh) + (mesh * 3)
+ 		x     = @rate position[p1], position[p2], 0.5
+ 		y     = @rate position[p3 + 1], position[p1 + 1], 0.5
+ 		atari = [x, y]
 
  		return atari
 
@@ -519,19 +520,20 @@ class Satella
 		tex   = @createTextureAttr params.mesh
 		index = @createIndexAttr   params.mesh
 
-		@json.layer.push {
+		@model.layer.push {
 			name          : params.name    # レイヤー名
 			path          : params.path    # 画像パス
 			mesh          : params.mesh    # メッシュ数
 			quality       : params.quality # テクスチャパラメータ
 			show          : true           # 表示状態
-			anchor        : [0, 0]         # アンカーポイント
+			anchor        : []             # アンカーポイント
 			position      : []             # 位置情報
-			rotate        : []             # 回転
+			rotate        : 0              # 回転
 			atari         : []             # アタリ
 			color         : color          # 色情報
 			texture_coord : tex            # テクスチャ情報
 			index         : index          # インデックスバッファ
+			parameter     : {}             # パラメータ
 		}
 
 		@loadResource params
@@ -543,17 +545,20 @@ class Satella
 	loadResource: (params) ->
 		img     = new Image()
 		img.src = params.path
-		num     = @json.layer.length - 1
+		num     = @model.layer.length - 1
 
 		img.onload = =>
-
 			# 初期の頂点座標
 			position = @createPositionAttr params.mesh, params.pos, params.size
-			@json.layer[num].position.push position
+			@model.layer[num].position = position
 
 			# 初期のアタリ
 			atari = @initAtari position, params.mesh
-			@json.layer[num].atari = atari
+			@model.layer[num].atari = atari
+
+			# 初期のアンカーポイント
+			anchor = @initAtari position, params.mesh
+			@model.layer[num].anchor = anchor
 
 			# テクスチャ
 			@images[params.name]  = img
@@ -561,6 +566,41 @@ class Satella
 
 			# イベント発火
 			@emit 'add', { name: params.name }
+
+	##
+	# パラメータの登録
+	# @param layer : レイヤー番号
+	# @param name  : パラメータ名
+	# @param type  : パラメータタイプ
+	# @param num   : 基準点の数
+	##
+	registerParam: (layer, name, type, num) ->
+		mesh = @model.layer[layer].mesh + 1
+		data = []
+
+		# move -------------------------------------------
+		if type is 'move' and num is 2
+			for i in [0...2]
+				position = []
+				for n in [0...(mesh * mesh * 3)]
+					position.push 0.0
+				data.push position
+		else if type is 'move' and num is 4
+			for i in [0...4]
+				position = []
+				for n in [0...(mesh * mesh * 3)]
+					position.push 0.0
+				data.push position
+
+		# rotate -----------------------------------------
+		else if type is 'rotate' and num is 2
+			data = [0, 0]
+		else
+			data = [0, 0, 0, 0]
+
+		@model.layer[layer].parameter[name] = data
+		return true
+
 
 	##
 	# 画面クリア
@@ -594,8 +634,8 @@ class Satella
 		@blendType()
 		@gl.enable @gl.BLEND
 
-		for layer, num in @json.layer
-			position      = layer.position[0]
+		for layer, num in @model.layer
+			position      = layer.position
 			color         = layer.color
 			texture_coord = layer.texture_coord
 			index         = layer.index
@@ -636,8 +676,29 @@ class Satella
 	# @param pos   : 位置情報
 	##
 	moveVertex: (layer, num, pos) ->
-		@json.layer[layer].position[0][num * 3]     = pos.x
-		@json.layer[layer].position[0][num * 3 + 1] = pos.y
+		num *= 3
+		@model.layer[layer].position[num]     = pos.x
+		@model.layer[layer].position[num + 1] = pos.y
+
+		return true
+
+	##
+	# 頂点座標の移動（パラメータ）
+	# @param layer : レイヤー番号
+	# @param param : パラメータ名
+	# @param dire  : 方向番号
+	# @param num   : 頂点番号
+	# @param pos   : 位置情報
+	##
+	moveParamVertex: (layer, param, dire, num, pos) ->
+		num *= 3
+		x    = @model.layer[layer].position[num]
+		y    = @model.layer[layer].position[num + 1]
+		x    = @diff(x, pos.x) * -1
+		y    = @diff(y, pos.y) * -1
+
+		@model.layer[layer].parameter[param][dire][num]     = x
+		@model.layer[layer].parameter[param][dire][num + 1] = y
 
 		return true
 

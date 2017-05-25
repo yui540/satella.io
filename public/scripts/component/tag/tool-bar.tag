@@ -9,15 +9,10 @@ tool-bar(style="height:{ height }px")
 		:scope {
 			position: absolute;
 			top: 0px;
-			right: -40px;
+			right: 0px;
 			display: block;
 			background-color: #eee;
 			width: 40px;
-			animation: show-toolbar 0.5s ease 0s forwards;
-		}
-		@keyframes show-toolbar {
-			0%   { right: -40px; }
-			100% { right: 0; }
 		}
 
 	script(type="coffee").
