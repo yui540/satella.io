@@ -9,7 +9,6 @@ mode-bar(
 			left: 5px;
 			height: 35px;
 			display: block;
-			background-color: #444;
 		}
 
 	script(type="coffee").

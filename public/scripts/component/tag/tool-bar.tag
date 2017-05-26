@@ -4,6 +4,11 @@ tool-bar(style="height:{ height }px")
 		icon="/images/tool-icon/texture.png"
 		licon="/images/tool-icon/texture_l.png"
 	)
+	tool-icon(
+		iname="parameter"
+		icon="/images/tool-icon/param.png"
+		licon="/images/tool-icon/param_l.png"
+	)
 
 	style(scoped).
 		:scope {

@@ -45,8 +45,9 @@ class Satella
 		@images  = {}
 		@texture = {}
 		@model   = {
-			meta  : [],
-			layer : []
+			meta      : [],
+			layer     : [],
+			parameter : []
 		}
 
 		# listener
@@ -568,15 +569,69 @@ class Satella
 			@emit 'add', { name: params.name }
 
 	##
+	# レイヤー番号の取得
+	# @param  name : レイヤー名
+	# @return i
+	##
+	getLayerPosition: (name) ->
+		for layer, i in @model.layer
+			if layer.name is name
+				return i
+		return false
+
+	##
+	# パラメータの取得
+	# @param  name : パラメータ名
+	# @return i
+	##
+	getParameterPosition: (name) ->
+		for parameter, i in @model.parameter
+			if parameter.name is name
+				return i
+		return false
+
+	##
+	# パラメータの追加
+	# @param name : パラメータ名
+	# @param type : パラメータタイプ
+	# @param num  : 基準点の数
+	##
+	addParameter: (name, type, num) ->
+		@model.parameter.push 
+			type  : type
+			num   : num
+			name  : name
+			x     : 0.5
+			y     : 0.5
+			layer : []
+		return true
+
+	##
+	# パラメータの消去
+	# @param name : パラメータ名
+	##
+	removeParameter: (name) ->
+		num   = @getParameterPosition name
+		layer = @model.parameter[num].layer
+
+		for l, i in layer
+			delete @model.layer[i].parameter[name]
+		@model.parameter.splice num, 1
+
+		return true
+
+	##
 	# パラメータの登録
 	# @param layer : レイヤー番号
 	# @param name  : パラメータ名
 	# @param type  : パラメータタイプ
 	# @param num   : 基準点の数
 	##
-	registerParam: (layer, name, type, num) ->
-		mesh = @model.layer[layer].mesh + 1
-		data = []
+	registerParameter: (layer, name, type, num) ->
+		num        = @getParameterPosition name
+		mesh       = @model.layer[layer].mesh + 1
+		layer_name = @model.layer[layer].name
+		data       = []
 
 		# move -------------------------------------------
 		if type is 'move' and num is 2
@@ -598,9 +653,25 @@ class Satella
 		else
 			data = [0, 0, 0, 0]
 
+		@model.parameter[num].layer.push layer_name
 		@model.layer[layer].parameter[name] = data
 		return true
 
+	##
+	# パラメータの解除
+	# @param layer : レイヤー番号
+	# @param name  : パラメータ名
+	##
+	releaseParameter: (layer, name) ->
+		num        = @getParameterPosition name
+		layer_name = @model.layer[layer].name
+
+		for l, i in @model.parameter[num].layer
+			if l is layer_name
+				@model.parameter[num].layer.splice i, 1
+
+		delete @model.layer[layer].parameter[name]
+		return true
 
 	##
 	# 画面クリア
