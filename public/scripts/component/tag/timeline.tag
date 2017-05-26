@@ -8,7 +8,7 @@ timeline
 			display: block;
 			width: 100%;
 			height: 70px;
-			background-color: #333;
+			background-color: #222;
 		}
 
 	script(type="coffee").

@@ -1,4 +1,5 @@
 tool-bar(style="height:{ height }px")
+	div.line
 	tool-icon(
 		iname="texture"
 		icon="/images/tool-icon/texture.png"
@@ -18,6 +19,14 @@ tool-bar(style="height:{ height }px")
 			display: block;
 			background-color: #eee;
 			width: 40px;
+		}
+		:scope .line {
+			position: absolute;
+			top: 0;
+			left: 19.5px;
+			width: 1px;
+			height: 100%;
+			background-color: #ccc;
 		}
 
 	script(type="coffee").

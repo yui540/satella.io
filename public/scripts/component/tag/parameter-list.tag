@@ -8,7 +8,7 @@ parameter-list(style="height:{ _height }px")
 			left: 250px;
 			display: block;
 			width: 249px;
-			background-color: #333;
+			background-color: #222;
 		}
 
 	script(type="coffee").

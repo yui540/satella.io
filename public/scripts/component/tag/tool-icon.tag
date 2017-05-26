@@ -5,39 +5,46 @@ tool-icon(onclick="{ onClick }")
 	style(scoped).
 		:scope {
 			position: relative;
-			width: 40px;
-			height: 40px;
+			width: 35px;
+			height: 35px;
 			display: block;
 			cursor: pointer;
-			margin-bottom: 1px;
+			margin-left: 2.5px;
+			margin-top: 10px;
+			border-radius: 50%;
+			background-color: #ccc;
+			overflow: hidden;
+			z-index: 3;
 		}
 		:scope .bg {
 			position: absolute;
 			top: 0;
-			left: 40px;
-			width: 40px;
-			height: 40px;
+			left: 0;
+			width: 35px;
+			height: 35px;
 			background-color: #c85399;
+			border-radius: 50%;
+			transform: scale(0.0);
 		}
-		:scope[data-state="active"] .bg  { animation: active 0.2s ease 0s forwards; }
-		:scope[data-state="passive"] .bg { animation: passive 0.2s ease 0s forwards; }
+		:scope[data-state="active"] .bg  { animation: active 0.3s ease 0s forwards; }
+		:scope[data-state="passive"] .bg { animation: passive 0.3s ease 0s forwards; }
 		:scope .icon {
 			position: absolute;
 			top: 0;
 			left: 0;
-			width: 40px;
-			height: 40px;
+			width: 35px;
+			height: 35px;
 			background-size: 60%;
 			background-position: center;
 			background-repeat: no-repeat;
 		}
 		@keyframes active {
-			0%   { left: 40px; }
-			100% { left: 0px; }
+			0%   { transform: scale(0.0); }
+			100% { transform: scale(1.0); }
 		}
 		@keyframes passive {
-			0%   { left: 0px; }
-			100% { left: 40px; }
+			0%   { transform: scale(1.0); }
+			100% { transform: scale(0.0);; }
 		}
 
 	script(type="coffee").

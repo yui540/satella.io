@@ -21,7 +21,7 @@ workspace(style="width:{ _width }px; height:{ _height }px")
 			top: 0;
 			right: 41px;
 			display: block;
-			background-color: #333;
+			background-color: #222;
 		}
 		:scope .canvas {
 			position: absolute;

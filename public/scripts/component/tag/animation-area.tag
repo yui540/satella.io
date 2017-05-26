@@ -1,14 +1,14 @@
-project(style="height:{ _height }px")
+animation-area(style="height:{ _height }px")
 	
 
 	style(scoped).
 		:scope {
 			position: absolute;
-			top: 0px;
+			bottom: 71px;
 			left: 0px;
 			display: block;
 			width: 249px;
-			background-color: #333;
+			background-color: #222;
 		}
 
 	script(type="coffee").
@@ -17,12 +17,12 @@ project(style="height:{ _height }px")
 		@on 'mount', ->
 			@width   = parseInt opts.width
 			@height  = parseInt opts.height
-			@_height = ((@height - 112) / 2)
+			@_height = ((@height - 112) / 2) - 1
 			@update()
 
 		# resize --------------------------------------------
 		observer.on 'resize', (params) =>
 			@width   = params.width
 			@height  = params.height
-			@_height = ((@height - 112) / 2)
+			@_height = ((@height - 112) / 2) - 1
 			@update()
