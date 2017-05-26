@@ -7,8 +7,9 @@ tool-icon(onclick="{ onClick }")
 			position: relative;
 			width: 40px;
 			height: 40px;
-			display; block;
+			display: block;
 			cursor: pointer;
+			margin-bottom: 1px;
 		}
 		:scope .bg {
 			position: absolute;
