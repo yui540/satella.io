@@ -1,6 +1,8 @@
 parameter-area(style="height:{ _height }px")
 	tabs(tab="{ tab }", width="249")
 	div.box(style="height:{ b_height }px")
+		parameter-slider
+		parameter-slider
 
 	style(scoped).
 		:scope {
