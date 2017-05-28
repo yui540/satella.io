@@ -19,6 +19,7 @@ require '../component/js/parameter-area'
 require '../component/js/parameter-list'
 require '../component/js/timeline'
 require '../component/js/tabs'
+require '../component/js/layer'
 require '../component/js/parameter-slider'
 
 # load -------------------------------------------------
