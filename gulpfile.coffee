@@ -8,11 +8,10 @@ source     = require 'vinyl-source-stream'
 
 # library
 gulp.task 'library', ->
-	gulp.src 'lib/*.coffee'
+	gulp.src 'public/scripts/*.coffee'
 		.pipe plumber()
 		.pipe coffee { bare: true }
 		.pipe uglify()
-		.pipe gulp.dest 'lib/'
 		.pipe gulp.dest 'public/scripts/util'
 
 # bin
@@ -51,7 +50,7 @@ gulp.task 'browserify', ['core'], ->
 # watch
 gulp.task 'watch', ->
 	gulp.watch [
-		'lib/*.coffee'
+		'public/scripts/*.coffee'
 		'bin/coffee/*.coffee'
 		'public/scripts/component/tag/*.tag'
 		'public/scripts/core.coffee'
