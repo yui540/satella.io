@@ -1,13 +1,8 @@
 project-area(style="height:{ _height }px")
 	tabs(tab="{ tab }", width="249")
-	div.box(style="height:{ b_height }px")
-		div.inner(style="height:{ b_height - 10 }px")
-			layer(
-				each="{ val, i in layer }"
-				show="{ val.show }"
-				thumb="{ val.thumb }"
-				name="{ val.name }"
-			)
+	div.box(style="height:{ box_height }px")
+		div.inner(style="height:{ box_height - 10 }px")
+			layer-box
 
 	style(scoped).
 		:scope {
@@ -22,6 +17,7 @@ project-area(style="height:{ _height }px")
 			width: 249px;
 		}
 		:scope .box .inner {
+			position: relative;
 			width: 239px;
 			margin: 5px;
 			overflow: auto;
@@ -31,31 +27,23 @@ project-area(style="height:{ _height }px")
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
-			@width    = parseInt opts.width
-			@height   = parseInt opts.height
-			@_height  = ((@height - 112) / 2)
-			@b_height = @_height - 30
-			@tab      = JSON.stringify([
+			@width      = parseInt opts.width
+			@height     = parseInt opts.height
+			@_height    = (@height - 112) / 2
+			@box_height = @_height - 30
+			@tab        = JSON.stringify([
 				{ title: "プロジェクト", event: "show-project", state: "active" }
-				{ title: "レイヤー", event: "show-layer", state: "passive" }
+				{ title: "レイヤー",    event: "show-layer",   state: "passive" }
 			])
-			@layer    = [
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: false }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: true }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: false }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: true }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: true }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: true }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: true }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: true }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: true }
-				{ name: "fsfs", thumb: '/img/texture_00.png', show: true }
-			]
 			@update()
 
 		# resize --------------------------------------------
 		observer.on 'resize', (params) =>
-			@width   = params.width
-			@height  = params.height
-			@_height = ((@height - 112) / 2)
+			@width      = params.width
+			@height     = params.height
+			@_height    = (@height - 112) / 2
+			@box_height = @_height - 30
 			@update()
+
+
+

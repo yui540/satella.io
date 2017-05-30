@@ -1,8 +1,8 @@
 scroll-bar-ver(
-	style="height:{ height }px"
+	style="height:{ _height }px"
 )
 	div.bar(
-		style="height:{ _height }px"
+		style="height:{ bar_height }px"
 	)
 
 	style(scoped).
@@ -14,8 +14,9 @@ scroll-bar-ver(
 		}
 		:scope .bar {
 			position: absolute;
-			left: 1px;
-			width: 13px;
+			top: 2px;
+			left: 2px;
+			width: 11px;
 			background-color: #000;
 			cursor: pointer;
 			border-radius: 10px;
@@ -25,7 +26,18 @@ scroll-bar-ver(
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
-			@per     = parseFloat opts.per
-			@height  = parseInt opts.height - 166
-			@_height = @height * @per
+			@per        = parseFloat opts.per
+			@height     = parseInt opts.height
+			@_height    = @height - 207
+			@bar_height = @_height * @per
 			@update()
+
+		# resize --------------------------------------------
+		observer.on 'resize', (params) =>
+			@height     = params.height
+			@_height    = @height - 207
+			@bar_height = @_height * @per
+			@update()
+
+
+

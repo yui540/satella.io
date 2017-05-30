@@ -1,8 +1,8 @@
 scroll-bar-side(
-	style="width:{ width }px"
+	style="width:{ _width }px"
 )
 	div.bar(
-		style="width:{ _width }px"
+		style="width:{ bar_width }px"
 	)
 
 	style(scoped).
@@ -14,8 +14,9 @@ scroll-bar-side(
 		}
 		:scope .bar {
 			position: absolute;
-			top: 1px;
-			height: 13px;
+			top: 2px;
+			left: 2px;
+			height: 11px;
 			background-color: #000;
 			cursor: pointer;
 			border-radius: 10px;
@@ -25,14 +26,16 @@ scroll-bar-side(
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
-			@per    = parseFloat opts.per
-			@width  = parseInt opts.width - 571
-			@_width = @width * @per
+			@per       = parseFloat opts.per
+			@width     = parseInt opts.width
+			@_width    = @width - 571
+			@bar_width = @_width * @per
 			@update()
 
 		# resize --------------------------------------------
 		observer.on 'resize', (params) =>
-			@per    = parseFloat opts.per
-			@width  = parseInt params.width - 571
-			@_width = @width * @per
+			@width     = parseInt params.width
+			@_width    = @width - 571
+			@bar_width = @_width * @per
 			@update()
+
