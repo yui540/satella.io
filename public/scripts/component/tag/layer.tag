@@ -1,4 +1,6 @@
 layer(
+	data-num="{ i }"
+	data-state=""
 	style="top:{ i * 41 }px"
 	onmousedown="{ layerDown }"
 )
@@ -10,8 +12,7 @@ layer(
 		:scope {
 			position: absolute;
 			display: block;
-			width: 239px;
-			height: 40px;
+			width: 239px; height: 40px;
 			border-bottom: solid 1px #4c4c4c;
 			background-color: #222;
 		}
@@ -20,6 +21,7 @@ layer(
 			display: block;
 			clear: both;
 		}
+		:scope[data-state="active"]  { background-color: #0082FF; }
 		:scope .look[data-state="show"] {
 			background-position: center;
 			background-size: 80%;
@@ -28,8 +30,7 @@ layer(
 		}
 		:scope .look {
 			float: left;
-			width: 15px;
-			height: 15px;
+			width: 15px; height: 15px;
 			margin-top: 12.5px;
 			margin-left: 10px;
 			background-color: #4c4c4c;
@@ -38,8 +39,7 @@ layer(
 		}
 		:scope .thumb {
 			float: left;
-			width: 40px;
-			height: 30px;
+			width: 40px; height: 30px;
 			margin-top: 5px;
 			margin-left: 10px;
 			background-position: center;
@@ -49,8 +49,7 @@ layer(
 		}
 		:scope .name {
 			float: left;
-			width: 154px;
-			height: 30px;
+			width: 144px; height: 30px;
 			margin-top: 5px;
 			margin-left: 10px;
 			background-position: center;
@@ -66,6 +65,46 @@ layer(
 		}
 
 	script(type="coffee").
+
+		##
+		# レイヤーを下げる
+		##
+		@down = ->
+			i1  = parseInt @root.getAttribute 'data-num'
+			i1 += 1
+			l2  = document.querySelector 'layer-box layer[data-num="' + i1 + '"]'
+			i2  = parseInt(l2.getAttribute('data-num')) - 1
+
+			@root.setAttribute 'data-num', i1
+			l2.setAttribute 'data-num', i2
+
+			observer.trigger 'layer-sort'
+
+		##
+		# レイヤーを下げる
+		##
+		@up = ->
+			i1  = parseInt @root.getAttribute 'data-num'
+			i1 -= 1
+			l2  = document.querySelector 'layer-box layer[data-num="' + i1 + '"]'
+			i2  = parseInt(l2.getAttribute('data-num')) + 1
+
+			@root.setAttribute 'data-num', i1
+			l2.setAttribute 'data-num', i2
+
+			observer.trigger 'layer-sort'
+
+		##
+		# 選択チェック
+		# @param i : レイヤー番号
+		##
+		@check = (i) ->
+			if @i is i 
+				@root.setAttribute 'data-state', 'active'
+			else
+				@root.setAttribute 'data-state', ''
+
+			return true
 
 		##
 		# 差分の取得
@@ -98,11 +137,18 @@ layer(
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
-			@i     = parseInt opts.i
+			@i     = parseInt @root.getAttribute 'data-num'
 			@name  = opts.name
 			@thumb = opts.thumb
 			@look  = opts.look
 			@update()
+
+			i = satella.current_layer
+			@check i
+
+		# layer select --------------------------------------
+		observer.on 'layer-select', (i) =>
+			@check i
 
 		# layer down ----------------------------------------
 		down = false
@@ -121,6 +167,7 @@ layer(
 			pos       = @i * 41
 			y         = e.clientY - top - down
 
+			# 範囲を制限
 			if y < 0
 				y = 0
 			else if y > len
@@ -129,9 +176,11 @@ layer(
 			# 並べ替え
 			diff = @diff y, pos
 			if diff >= 20.5
-				@i += 1
+				satella.sort @i, 'up'
+				@down()
 			else if diff <= -20.5
-				@i -= 1
+				satella.sort @i, 'down'
+				@up()
 
 			@move y
 
@@ -139,3 +188,15 @@ layer(
 		window.addEventListener 'mouseup', (e) =>
 			@repos()
 			down = false
+
+		# layer sort ----------------------------------------
+		observer.on 'layer-sort', =>
+			@i = parseInt @root.getAttribute 'data-num'
+			@update()
+
+		# satella ready -------------------------------------
+		observer.on 'satella-ready', =>
+			satella.on 'add', =>
+				i = satella.current_layer
+				@check i
+				

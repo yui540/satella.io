@@ -1,7 +1,8 @@
 class Satella
 	constructor: (params) ->
-		# camera
-		@scale = 5.35
+		# state
+		@scale         = 5.35
+		@current_layer = -1
 
 		# canvas
 		@webgl = params.canvas
@@ -566,7 +567,32 @@ class Satella
 			@texture[params.name] = @createTexture img, params.quality
 
 			# イベント発火
+			@current_layer = @model.layer.length - 1
 			@emit 'add', { name: params.name }
+
+	##
+	# レイヤーの並べ替え
+	# @param num  : レイヤー番号
+	# @param type : 'up' or 'down'
+	##
+	sort: (num, type) ->
+		axis = null
+		if type is 'up'
+			axis = num
+		else
+			axis = num - 1
+
+		a1 = axis + 1
+		a2 = axis
+
+		@model.layer.splice(
+			axis, 
+			2, 
+			@model.layer[a1], 
+			@model.layer[a2]
+		)
+		@emit 'sort'
+		return true
 
 	##
 	# レイヤー番号の取得

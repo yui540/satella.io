@@ -1,5 +1,6 @@
 top.Satella  = require '../util/satella'
 top.View     = require '../util/view'
+top.Sektch   = require '../util/sketch'
 top.riot     = require 'riot'
 top.observer = riot.observable()
 
@@ -33,123 +34,72 @@ window.addEventListener 'resize', ->
 	size = getSize()
 	observer.trigger 'resize', size
 
-# satella mount ----------------------------------------
-observer.on 'satella-mount', (params) ->
-	mountSattela params
+# canvas mount -----------------------------------------
+observer.on 'canvas-mount', (params) ->
+	mount()
 
-# satella resize ---------------------------------------
+# canvas resize ----------------------------------------
 observer.on 'resize', (params) ->
-	resizeSatella params
+	resize()
+
+# layer sort -------------------------------------------
+observer.on 'layer-sort', ->
+	satella.render()
 
 ##
-# Satellaのマウント
-# @param params : { width, height }
+# マウント
 ##
-top.mountSattela = (params) ->
-	width   = params.width  - 571
-	height  = params.height - 207
-	_width  = 0
-	_height = 0
-	s       = 20
+top.mount = ->
+	# satella
+	params                   = getSatellaParams()
+	params['canvas']         = document.getElementById 'satella'
+	top.satella              = new Satella params
+	satella.webgl.style.left = params.x + 'px'
+	satella.webgl.style.top  = params.y + 'px'
 
-	if width < height
-		_width  = width - s
-		_height = width - s
-	else
-		_width  = height - s
-		_height = height - s
+	# view
+	params           = getViewParams()
+	params['canvas'] = document.getElementById 'view'
+	top.view         = new View params
 
-	top.satella = new Satella
-		canvas : document.getElementById 'satella'
-		width  : _width
-		height : _height
+	# sketch
+	top.sketch = new Sektch 
+		canvas : document.getElementById 'sketch'
+		width  : params.webgl_width
+		height : params.webgl_height
+	sketch.canvas.style.left = params.x + 'px'
+	sketch.canvas.style.top  = params.y + 'px'
 
-	satella.addLayer 
-		name    : "fsfs"
-		path    : "/img/texture_00.png"
-		mesh    : 10
-		quality : "LINEAR_MIPMAP_LINEAR"
-		pos     : { x: 0, y: 0 }
-		size    : 1
-
-	satella.on 'add', ->
-		satella.render()
-
-	mountView 
-		width        : width
-		height       : height
-		webgl_width  : _width
-		webgl_height : _height
-
-##
-# Viewのマウント
-# @param params : { width, height, webgl_width, webgl_height } 
-##
-mountView = (params) ->
-	canvas              = document.querySelector('.canvas')
+	# canvas
+	canvas              = document.querySelector '.canvas'
 	canvas.style.width  = params.width  + 'px'
 	canvas.style.height = params.height + 'px'
-	x                   = (params.width - params.webgl_width)   / 2
-	y                   = (params.height - params.webgl_height) / 2
-	webgl               = document.getElementById 'satella'
-	webgl.style.left    = x + 'px'
-	webgl.style.top     = y + 'px'
 
-	top.view = new View
-		canvas       : document.getElementById 'view'
-		width        : params.width
-		height       : params.height
-		x            : x
-		y            : y
-		webgl_width  : params.webgl_width
-		webgl_height : params.webgl_height
+	observer.trigger 'satella-ready'
 
 ##
-# Satellaのリサイズ
-# @param params : { width, height }
-##
-top.resizeSatella = (params) ->
-	width   = params.width  - 571
-	height  = params.height - 207
-	_width  = 0
-	_height = 0
-	s       = 20
+# リサイズ
+## 
+resize = ->
+	# satella
+	params = getSatellaParams()
+	satella.resize params.width, params.height
+	satella.webgl.style.left = params.x + 'px'
+	satella.webgl.style.top  = params.y + 'px'
 
-	if width < height
-		_width  = width - s
-		_height = width - s
-	else
-		_width  = height - s
-		_height = height - s
+	# view
+	params = getViewParams()
+	view.resize params
 
-	satella.resize _width, _height
-	resizeView 
-		width        : width
-		height       : height
-		webgl_width  : _width
-		webgl_height : _height
+	# sketch
+	sketch.resize params.webgl_width, params.webgl_height
+	sketch.canvas.style.left = params.x + 'px'
+	sketch.canvas.style.top  = params.y + 'px'
 
-##
-# Viewのリサイズ
-# @param params : { width, height, webgl_width, webgl_height }
-##
-top.resizeView = (params) ->
-	canvas              = document.querySelector('.canvas')
+	# canvas
+	canvas              = document.querySelector '.canvas'
 	canvas.style.width  = params.width  + 'px'
 	canvas.style.height = params.height + 'px'
-	x                   = (params.width - params.webgl_width)   / 2
-	y                   = (params.height - params.webgl_height) / 2
-	webgl               = document.getElementById 'satella'
-	webgl.style.left    = x + 'px'
-	webgl.style.top     = y + 'px'
-
-	view.resize
-		width        : params.width
-		height       : params.height
-		x            : x
-		y            : y
-		webgl_width  : params.webgl_width
-		webgl_height : params.webgl_height
 
 ##
 # objectのコピー
@@ -171,5 +121,53 @@ top.getSize = ->
 	size   = { width: width, height: height }
 
 	return size
+
+##
+# Satellaのパラメータ取得
+# @return params
+##
+top.getSatellaParams = ->
+	width   = window.innerWidth
+	height  = window.innerHeight
+	width   = if(width >= 1100) then width  else 1100
+	height  = if(height >= 650) then height else 650
+	width   = width  - 571
+	height  = height - 207
+	_width  = _height = 0
+	s       = 20
+
+	if width < height
+		_width  = width - s
+		_height = width - s
+	else
+		_width  = height - s
+		_height = height - s
+
+	x      = (width - _width) / 2
+	y      = (height - _height) / 2
+	params = { width: _width, height: _height, x: x, y: y }
+	return params
+
+##
+# Viewのパラメータ取得
+# @return params
+##
+top.getViewParams = ->
+	width   = window.innerWidth
+	height  = window.innerHeight
+	width   = if(width >= 1100) then width  else 1100
+	height  = if(height >= 650) then height else 650
+	width   = width  - 571
+	height  = height - 207
+	_params = getSatellaParams()
+
+	params = 
+		width        : width
+		height       : height
+		x            : _params.x
+		y            : _params.y
+		webgl_width  : _params.width
+		webgl_height : _params.height
+	return params
 
 

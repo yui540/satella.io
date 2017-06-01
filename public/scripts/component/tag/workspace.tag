@@ -30,6 +30,10 @@ workspace(style="width:{ _width }px; height:{ _height }px")
 			top: 0;
 			left: 0;
 		}
+		:scope #sketch {
+			position: absolute;
+			background-color: #fff;
+		}
 		:scope scroll-bar-side {
 			position: absolute;
 			bottom: 45px;
@@ -52,7 +56,7 @@ workspace(style="width:{ _width }px; height:{ _height }px")
 			@update()
 
 			# イベント発火
-			observer.trigger 'satella-mount', { width: @width, height: @height }
+			observer.trigger 'canvas-mount', { width: @width, height: @height }
 
 		# resize --------------------------------------------
 		observer.on 'resize', (params) =>

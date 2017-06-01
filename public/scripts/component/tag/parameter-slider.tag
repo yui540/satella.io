@@ -79,7 +79,7 @@ parameter-slider(data-num="{ num }", data-type="{ type }", data-id="{ id }")
 			position: absolute;
 			top: 0; left: 0;
 			height: 5px;
-			background-color: #c85399;
+			background-color: #595DEF;
 		}
 		:scope .type2 .right .slider .picker {
 			position: absolute;
@@ -148,7 +148,7 @@ parameter-slider(data-num="{ num }", data-type="{ type }", data-id="{ id }")
 			display: block;
 			width: 100%;
 			height: 1px;
-			background-color: #c85399;
+			background-color: #595DEF;
 		}
 		:scope .type4 .right .slider:after {
 			position: absolute;
@@ -157,7 +157,7 @@ parameter-slider(data-num="{ num }", data-type="{ type }", data-id="{ id }")
 			display: block;
 			width: 1px;
 			height: 100%;
-			background-color: #c85399;
+			background-color: #595DEF;
 		}
 		:scope .type4 .right .slider .picker {
 			position: absolute;

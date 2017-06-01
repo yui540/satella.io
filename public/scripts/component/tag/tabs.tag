@@ -42,15 +42,15 @@ tabs(style="width:{ width }px")
 				border-bottom: solid 1px #444;
 			}
 			100% {
-				color: #c85399;
-				border-bottom: solid 1px #c85399;
+				color: #595DEF;
+				border-bottom: solid 1px #595DEF;
 				background-color: #222;
 			}
 		}
 		@keyframes hidden-tab {
 			0% {
-				color: #c85399;
-				border-bottom: solid 1px #c85399;
+				color: #595DEF;
+				border-bottom: solid 1px #595DEF;
 				background-color: #222;
 			}
 			100% { 

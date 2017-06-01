@@ -33,7 +33,7 @@ tool-bar(style="height:{ height }px")
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
-			@height = parseInt opts.height - 71
+			@height = parseInt opts.height - 112
 			@update()
 
 		# resize --------------------------------------------
