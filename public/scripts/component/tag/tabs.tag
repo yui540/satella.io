@@ -24,40 +24,15 @@ tabs(style="width:{ width }px")
 			font-size: 10px;
 			line-height: 30px;
 			text-align: center;
-			color: #999;
-			background-color: #444;
+			color: #ccc;
+			background-color: #4F5B66;
 			border-bottom: solid 1px #444;
 			cursor: pointer;
 		}
 		:scope .tab[data-state="active"] {
-			animation: show-tab 0.3s ease 0s forwards;
-		}
-		:scope .tab[data-state="passive"] {
-			animation: hidden-tab 0.3s ease 0s forwards;
-		}
-		@keyframes show-tab {
-			0% { 
-				color: #999;
-				background-color: #444;
-				border-bottom: solid 1px #444;
-			}
-			100% {
-				color: #595DEF;
-				border-bottom: solid 1px #595DEF;
-				background-color: #222;
-			}
-		}
-		@keyframes hidden-tab {
-			0% {
-				color: #595DEF;
-				border-bottom: solid 1px #595DEF;
-				background-color: #222;
-			}
-			100% { 
-				color: #999;
-				background-color: #444;
-				border-bottom: solid 1px #444;
-			}
+			color: #BF616A;
+			border-bottom: solid 1px #BF616A;
+			background-color: #313743;
 		}
 
 	script(type="coffee").
@@ -65,7 +40,7 @@ tabs(style="width:{ width }px")
 		# click tab -----------------------------------------
 		@clickTab = (e) =>
 			for child in @root.children
-				child.setAttribute 'data-state', 'passive'
+				child.setAttribute 'data-state', ''
 			e.target.setAttribute 'data-state', 'active'
 
 			# イベント発火

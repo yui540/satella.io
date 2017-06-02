@@ -29,7 +29,7 @@ status-bar
 			margin-left: 10px;
 		}
 		:scope .status-val {
-			color: #E27171;
+			color: #E5CA8B;
 			margin-left: 5px;
 		}
 

@@ -9,7 +9,7 @@ scroll-bar-ver(
 		:scope {
 			position: relative;
 			display: block;
-			background-color: #555;
+			background-color: #4F5B66;
 			width: 15px;
 		}
 		:scope .bar {
@@ -17,7 +17,7 @@ scroll-bar-ver(
 			top: 2px;
 			left: 2px;
 			width: 11px;
-			background-color: #000;
+			background-color: #2B303B;
 			cursor: pointer;
 			border-radius: 10px;
 		}

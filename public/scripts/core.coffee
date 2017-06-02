@@ -22,7 +22,8 @@ require '../component/js/timeline'
 require '../component/js/tabs'
 require '../component/js/layer-box'
 require '../component/js/layer'
-require '../component/js/parameter-slider'
+require '../component/js/window-area'
+require '../component/js/texture-window'
 
 # load -------------------------------------------------
 window.addEventListener 'load', ->

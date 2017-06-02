@@ -22,7 +22,7 @@ tool-icon(onclick="{ onClick }")
 			left: 0;
 			width: 35px;
 			height: 35px;
-			background-color: #c85399;
+			background-color: #AA87A5;
 			border-radius: 50%;
 			transform: scale(0.0);
 		}

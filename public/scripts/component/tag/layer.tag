@@ -4,7 +4,10 @@ layer(
 	style="top:{ i * 41 }px"
 	onmousedown="{ layerDown }"
 )
-	div.look(data-state="{ look }")
+	div.look(
+		data-state="{ look }"
+		onclick="{ clickLook }"
+	)
 	div.thumb(style="background-image:url({ thumb })")
 	div.name { name }
 
@@ -14,14 +17,14 @@ layer(
 			display: block;
 			width: 239px; height: 40px;
 			border-bottom: solid 1px #4c4c4c;
-			background-color: #222;
+			background-color: #313743;
 		}
 		:scope:after {
 			content: "";
 			display: block;
 			clear: both;
 		}
-		:scope[data-state="active"]  { background-color: #0082FF; }
+		:scope[data-state="active"]  { background-color: #BF616A; }
 		:scope .look[data-state="show"] {
 			background-position: center;
 			background-size: 80%;
@@ -33,7 +36,7 @@ layer(
 			width: 15px; height: 15px;
 			margin-top: 12.5px;
 			margin-left: 10px;
-			background-color: #4c4c4c;
+			background-color: #4F5B66;
 			border-radius: 3px;
 			cursor: pointer;
 		}
@@ -45,7 +48,7 @@ layer(
 			background-position: center;
 			background-size: contain;
 			background-repeat: no-repeat;
-			background-color: #4c4c4c;
+			background-color: #4F5B66;
 		}
 		:scope .name {
 			float: left;
@@ -55,7 +58,7 @@ layer(
 			background-position: center;
 			background-size: contain;
 			background-repeat: no-repeat;
-			background-color: #4c4c4c;
+			background-color: #4F5B66;
 			font-size: 10px;
 			line-height: 30px;
 			color: #fff;
@@ -79,6 +82,7 @@ layer(
 			l2.setAttribute 'data-num', i2
 
 			observer.trigger 'layer-sort'
+			return true
 
 		##
 		# レイヤーを下げる
@@ -93,13 +97,16 @@ layer(
 			l2.setAttribute 'data-num', i2
 
 			observer.trigger 'layer-sort'
+			return true
 
 		##
 		# 選択チェック
 		# @param i : レイヤー番号
 		##
 		@check = (i) ->
-			if @i is i 
+			len = satella.model.layer.length - 1
+			n   = len - @i
+			if i is n 
 				@root.setAttribute 'data-state', 'active'
 			else
 				@root.setAttribute 'data-state', ''
@@ -135,6 +142,15 @@ layer(
 			@root.style.top    = @i * 41 + 'px'
 			return true
 
+		##
+		# レイヤーの選択
+		##
+		@select = ->
+			num = (satella.model.layer.length - 1) - @i
+			satella.current_layer = num
+			observer.trigger 'layer-select', num
+			return true
+
 		# mount ---------------------------------------------
 		@on 'mount', ->
 			@i     = parseInt @root.getAttribute 'data-num'
@@ -143,8 +159,15 @@ layer(
 			@look  = opts.look
 			@update()
 
-			i = satella.current_layer
-			@check i
+			@check satella.current_layer
+
+		# look click ----------------------------------------
+		@clickLook = (e) ->
+			state = e.target.getAttribute 'data-state'
+			if state is 'show'
+				e.target.setAttribute 'data-state', 
+			else
+
 
 		# layer select --------------------------------------
 		observer.on 'layer-select', (i) =>
@@ -155,12 +178,11 @@ layer(
 		@layerDown = (e) ->
 			top  = @root.getBoundingClientRect().top
 			down = e.clientY - top
+			@select()
 
 		# layer move ----------------------------------------
 		window.addEventListener 'mousemove', (e) =>
-			if not down
-				return
-
+			if not down then return
 			layer_box = document.querySelector('layer-box')
 			len       = (layer_box.children.length - 1) * 41
 			top       = layer_box.getBoundingClientRect().top
@@ -168,20 +190,22 @@ layer(
 			y         = e.clientY - top - down
 
 			# 範囲を制限
-			if y < 0
-				y = 0
-			else if y > len
-				y = len
+			if y < 0        then y = 0
+			else if y > len then y = len
 			
 			# 並べ替え
+			num  = (satella.model.layer.length - 1) - @i
 			diff = @diff y, pos
 			if diff >= 20.5
-				satella.sort @i, 'up'
+				satella.sort num, 'down'
 				@down()
+				@select()
 			else if diff <= -20.5
-				satella.sort @i, 'down'
+				satella.sort num, 'up'
 				@up()
+				@select()
 
+			# 移動
 			@move y
 
 		# layer up ------------------------------------------
@@ -196,6 +220,7 @@ layer(
 
 		# satella ready -------------------------------------
 		observer.on 'satella-ready', =>
+			# add ---------------------------------------------
 			satella.on 'add', =>
 				i = satella.current_layer
 				@check i

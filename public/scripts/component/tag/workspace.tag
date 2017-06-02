@@ -14,13 +14,13 @@ workspace(style="width:{ _width }px; height:{ _height }px")
 			top: 0;
 			right: 41px;
 			display: block;
-			background-color: #222;
+			background-color: #313743;
 		}
 		:scope .canvas {
 			position: absolute;
 			top: 30px;
 			left: 5px;
-			background-color: #555;
+			background-color: #4F5B66;
 		}
 		:scope #satella {
 			position: absolute;
