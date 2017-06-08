@@ -24,7 +24,7 @@ layer(
 			display: block;
 			clear: both;
 		}
-		:scope[data-state="active"]  { background-color: #BF616A; }
+		:scope[data-state="active"]  { background-color: rgb(0,130,255); }
 		:scope .look[data-state="show"] {
 			background-position: center;
 			background-size: 80%;

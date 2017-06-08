@@ -26,12 +26,12 @@ tabs(style="width:{ width }px")
 			text-align: center;
 			color: #ccc;
 			background-color: #4F5B66;
-			border-bottom: solid 1px #444;
+			border-bottom: solid 1px #4F5B66;
 			cursor: pointer;
 		}
 		:scope .tab[data-state="active"] {
-			color: #BF616A;
-			border-bottom: solid 1px #BF616A;
+			color: #595DEF;
+			border-bottom: solid 1px #595DEF;
 			background-color: #313743;
 		}
 

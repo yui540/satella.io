@@ -8,7 +8,7 @@ title-bar
 			left: 0;
 			width: 100%;
 			height: 40px;
-			background-color: #BF616A;
+			background-color: #343a71;
 		}
 
 	script(type="coffee").
