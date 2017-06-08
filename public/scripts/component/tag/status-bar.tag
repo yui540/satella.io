@@ -10,7 +10,7 @@ status-bar
 	span.status-li camera_y:
 		span.status-val { camera_y }
 	span.status-li mode:
-		span.status-val { scale }
+		span.status-val { mode }
 
 	style(scoped).
 		:scope {
@@ -29,7 +29,7 @@ status-bar
 			margin-left: 10px;
 		}
 		:scope .status-val {
-			color: #E5CA8B;
+			color: #E27171;
 			margin-left: 5px;
 		}
 
@@ -58,10 +58,17 @@ status-bar
 		##
 		# カメラ位置
 		# @param x : x座標
+		## 
+		@setCameraX = (x) ->
+			@camera_x = x.toFixed 2
+			@update()
+			return true
+
+		##
+		# カメラ位置
 		# @param y : y座標
 		## 
-		@setCamera = (x, y) ->
-			@camera_x = x.toFixed 2
+		@setCameraY = (y) ->
 			@camera_y = y.toFixed 2
 			@update()
 			return true
@@ -80,8 +87,8 @@ status-bar
 			@mouse_x  = 0.toFixed 2
 			@mouse_y  = 0.toFixed 2
 			@scale    = 1.toFixed 2
-			@camera_x = 0.toFixed 2
-			@camera_y = 0.toFixed 2
+			@camera_x = 0.5.toFixed 2
+			@camera_y = 0.5.toFixed 2
 			@mode     = 'polygon'
 			@update()
 			
@@ -93,9 +100,13 @@ status-bar
 		observer.on 'status-scale', (data) =>
 			@setScale data.scale
 
-		# status camera --------------------------------------
-		observer.on 'status-camera', (data) =>
-			@setCamera data.x, data.y
+		# status camera x ------------------------------------
+		observer.on 'status-camera-x', (data) =>
+			@setCameraX data
+
+		# status camera y ------------------------------------
+		observer.on 'status-camera-y', (data) =>
+			@setCameraY data
 
 		# status mode ----------------------------------------
 		observer.on 'status-mode', (data) =>
