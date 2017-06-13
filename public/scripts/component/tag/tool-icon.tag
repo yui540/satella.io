@@ -50,29 +50,18 @@ tool-icon(onclick="{ onClick }")
 	script(type="coffee").
 
 		##
-		# アクティブ
+		# 選択
 		##
 		@active = ->
 			@root.setAttribute 'data-state', 'active'
 			@root.children[1].style.backgroundImage = 'url(' + @licon + ')'
 
 		##
-		# パッシブ
+		# 非選択
 		##
 		@passive = ->
 			@root.setAttribute 'data-state', 'passive'
 			@root.children[1].style.backgroundImage = 'url(' + @icon + ')'
-
-		# click ---------------------------------------------
-		@onClick = (e) ->
-			state = @root.getAttribute 'data-state'
-
-			if state is 'active'
-				@passive()
-				observer.trigger 'tool-icon-close', { name: @iname } 
-			else
-				@active()
-				observer.trigger 'tool-icon-close', { name: @iname } 
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
@@ -80,6 +69,27 @@ tool-icon(onclick="{ onClick }")
 			@icon  = opts.icon
 			@licon = opts.licon
 			@update()
+
+		# click ---------------------------------------------
+		@onClick = (e) ->
+			state = @root.getAttribute 'data-state'
+
+			if state is 'active'
+				observer.trigger 'tool-icon-close', @iname 
+			else
+				observer.trigger 'tool-icon-open', @iname 
+
+		# open -----------------------------------------------
+		observer.on 'tool-icon-open', (iname) =>
+			if @iname is iname
+				@active()
+
+		# close ----------------------------------------------
+		observer.on 'tool-icon-close', (iname) =>
+			if @iname is iname
+				@passive()
+
+		
 
 
 

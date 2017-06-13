@@ -6,7 +6,7 @@ editor(data-state="active" style="width:{ width }px;height:{ _height }px")
 	workspace(width="{ width }", height="{ height }")
 	tool-bar(height="{ height }")
 	timeline(width="{ width }", height="{ height }")
-	window-area
+	window-area(width="{ width }", height="{ height }")
 
 	style(scoped).
 		:scope {

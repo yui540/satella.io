@@ -716,7 +716,7 @@ class Satella
 		@lookAt([0.0, 0.0, @scale], [0.0, 0.0, 0.0], [0.0, 1.0, 0.0], 
 			@v_matrix
 		)
-		@perspective(50, @width / @height, 0.1, 100,
+		@perspective(50, @width / @height, 0.1, 10,
 			@p_matrix
 		)
 		@multiply @p_matrix,   @v_matrix, @tmp_matrix

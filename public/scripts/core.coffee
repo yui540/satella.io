@@ -24,6 +24,7 @@ require '../component/js/layer-box'
 require '../component/js/layer'
 require '../component/js/window-area'
 require '../component/js/texture-window'
+require '../component/js/trim'
 
 # load -------------------------------------------------
 window.addEventListener 'load', ->

@@ -47,6 +47,9 @@ gulp.task 'browserify', ['core'], ->
 		.pipe source 'core.js'
 		.pipe gulp.dest 'public/scripts/lib'
 
+# default
+gulp.task 'default', ['library', 'bin', 'riot', 'core', 'browserify']
+
 # watch
 gulp.task 'watch', ->
 	gulp.watch [

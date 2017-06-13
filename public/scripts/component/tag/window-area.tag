@@ -1,5 +1,5 @@
 window-area
-	textarea-window
+	textarea-window(width="{ width }", height="{ height }")
 
 	style(scoped).
 		:scope {
@@ -10,3 +10,6 @@ window-area
 
 		# mount ---------------------------------------------
 		@on 'mount', ->
+			@width  = parseInt opts.width
+			@height = parseInt opts.height
+			@update()
