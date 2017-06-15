@@ -4,7 +4,13 @@ textarea-window(
 	div.title-bar(onmousedown="{ mouseDown }")
 		div.close(onclick="{ clickClose }")
 	div.body
-		trim(size="250")
+		trim(size="300")
+		input.layer-name(type="text", placeholder="レイヤー名（20文字以内）", size="20")
+		div.label メッシュ数
+		div.mesh
+			div.btn
+			select
+				option(each="{ mesh }", value="{ i }") { i }
 
 	style(scoped).
 		:scope {
@@ -24,7 +30,7 @@ textarea-window(
 			top: 0;
 			width: 100%;
 			height: 30px;
-			border-bottom: solid 1px #BF616A;
+			border-bottom: solid 1px #666;
 		}
 		:scope .title-bar .close {
 			position: absolute;
@@ -41,7 +47,7 @@ textarea-window(
 			left: 5px;
 			width: 20px;
 			height: 1px;
-			background-color: #BF616A;
+			background-color: #ccc;
 		}
 		:scope .title-bar .close:before { transform: rotate(45deg); }
 		:scope .title-bar .close:after  { transform: rotate(-45deg); }
@@ -50,6 +56,68 @@ textarea-window(
 			top: 31px;
 			width: 500px; height: 369px;
 		}
+		:scope .body trim {
+			position: absolute;
+			top: 10px; left: 10px;
+		}
+		:scope .body .layer-name {
+			font-size: 10px;
+			color: #fff;
+			position: absolute;
+			top: 10px; right: 10px;
+			width: 170px; height: 30px;
+			background-color: #4F5B66;
+			transition: all 0.3s ease 0s;
+			padding: 0 5px;
+			box-sizing: border-box;
+		}
+		:scope .body .layer-name::-webkit-input-placeholder {
+			color: #ccc;
+		}
+		:scope .body .layer-name:focus {
+			outline: none;
+			box-shadow: 0 0 10px #313743 inset;
+		}
+		:scope .body .label {
+			position: absolute;
+			top: 50px; right: 80px;
+			font-size: 10px;
+			color: #ccc;
+			line-height: 25px;
+			text-align: center;
+			width: 60px; height: 25px;
+		}
+		:scope .body .mesh {
+			position: absolute;
+			top: 50px; right: 10px;
+			width: 60px; height: 25px;
+		}
+		:scope .body .mesh select {
+			position: absolute;
+			top: 0; left: 0;
+			-moz-appearance: none;
+			-webkit-appearance: none;
+			appearance: none;
+			border-radius: 3px;
+			border: 0; margin: 0; padding: 0 5px;
+			background: #fff;
+			box-sizing: border-box;
+			width: 60px; height: 25px;
+		}
+		:scope .body .mesh .btn {
+			position: absolute;
+			top: 0; right: 0;
+			width: 15px; height: 25px;
+			background-color: #777;
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+			background-image: url(/images/texture-window/select.png);
+			background-size: 70% auto;
+			background-position: center;
+			background-repeat: no-repeat;
+			z-index: 1;
+		}
+		:scope .body .mesh select:focus { outline: none; }
 		@keyframes open-texture-window {
 			0%   { opacity: 0; transform: scale(0.9); }
 			100% { opacity: 1; transform: scale(1.0); }
@@ -95,6 +163,9 @@ textarea-window(
 			@size   = { w: 500, h: 400 }
 			@x      = (@width / 2) - (@size.w / 2)
 			@y      = (@height / 2) - (@size.h / 2)
+			@mesh   = []
+			for i in [1..30] then @mesh.push { i: i }
+
 			@update()
 
 		# open ---------------------------------------------
@@ -137,7 +208,3 @@ textarea-window(
 		# mouse up -----------------------------------------
 		window.addEventListener 'mouseup', (e) =>
 			bar_down = false
-			
-
-		
-

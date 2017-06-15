@@ -31,7 +31,9 @@ li {
 }
 
 input, textarea {
-	-webkit-appearance: none;
+	-moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
 	border: none;
 	padding: 0;
 	border-radius: 0;
