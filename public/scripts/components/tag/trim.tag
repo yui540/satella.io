@@ -48,6 +48,8 @@ trim(style="width:{ size }px;height:{ size }px")
 			@rect = size
 			@update()
 
+			observer.trigger ''
+
 		##
 		# 切り取り位置の設定
 		# @param x : x座標

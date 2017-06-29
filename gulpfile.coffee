@@ -8,11 +8,11 @@ source     = require 'vinyl-source-stream'
 
 # library
 gulp.task 'library', ->
-	gulp.src 'public/scripts/*.coffee'
+	gulp.src 'public/scripts/utils/coffee/*.coffee'
 		.pipe plumber()
 		.pipe coffee { bare: true }
 		.pipe uglify()
-		.pipe gulp.dest 'public/scripts/util'
+		.pipe gulp.dest 'public/scripts/utils/js'
 
 # bin
 gulp.task 'bin', ['library'], ->
@@ -24,13 +24,13 @@ gulp.task 'bin', ['library'], ->
 
 # riot
 gulp.task 'riot', ['bin'], ->
-	gulp.src 'public/scripts/component/tag/*.tag'
+	gulp.src 'public/scripts/components/tag/*.tag'
 		.pipe plumber()
 		.pipe riot
 			compact  : true
 			template : 'pug'
 			type     : 'coffeescript'
-		.pipe gulp.dest 'public/scripts/component/js'
+		.pipe gulp.dest 'public/scripts/components/js'
 
 # core
 gulp.task 'core', ['riot'], ->
