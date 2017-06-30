@@ -1,7 +1,10 @@
-fs      = require 'fs'
-path    = require 'path'
-express = require 'express'
-app     = express()
+fs           = require 'fs'
+path         = require 'path'
+express      = require 'express'
+logger       = require 'morgan'
+bodyParser   = require 'body-parser'
+cookieParser = require 'cookie-parser'
+app          = express()
 
 # config
 app.set 'views', path.join __dirname, '../../views'
@@ -23,3 +26,10 @@ server = app.listen 8080, ->
 	console.log ''
 	console.log '################################################################'
 	console.log ''
+
+##
+# web socket
+##
+io = require('socket.io')(server)
+io.sockets.on 'connection', (socket) ->
+	

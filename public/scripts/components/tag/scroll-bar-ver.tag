@@ -10,14 +10,14 @@ scroll-bar-ver(
 		:scope {
 			position: relative;
 			display: block;
-			background-color: #4F5B66;
+			background-color: #555;
 			width: 15px;
 		}
 		:scope .bar {
 			position: absolute;
 			left: 2px;
 			width: 11px;
-			background-color: #2B303B;
+			background-color: #333;
 			cursor: pointer;
 			border-radius: 10px;
 		}

@@ -55,7 +55,7 @@ gulp.task 'watch', ->
 	gulp.watch [
 		'public/scripts/*.coffee'
 		'bin/coffee/*.coffee'
-		'public/scripts/component/tag/*.tag'
+		'public/scripts/components/tag/*.tag'
 		'public/scripts/core.coffee'
 	], ['library', 'bin', 'riot', 'core', 'browserify']
 

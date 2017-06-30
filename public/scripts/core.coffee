@@ -65,7 +65,7 @@ top.mount = ->
 	top.view         = new View params
 
 	# sketch
-	top.sketch = new Sektch 
+	top.sketch = new Sektch
 		canvas : document.getElementById 'sketch'
 		width  : params.webgl_width
 		height : params.webgl_height
@@ -129,14 +129,14 @@ top.getSize = ->
 # @return params
 ##
 top.getSatellaParams = ->
-	width   = window.innerWidth
-	height  = window.innerHeight
-	width   = if(width >= 1100) then width  else 1100
-	height  = if(height >= 650) then height else 650
-	width   = width  - 571
-	height  = height - 207
-	_width  = _height = 0
-	s       = 20
+	width  = window.innerWidth
+	height = window.innerHeight
+	width  = if(width >= 1100) then width  else 1100
+	height = if(height >= 650) then height else 650
+	width  = width  - 571
+	height = height - 207
+	_width = _height = 0
+	s      = 20
 
 	if width < height
 		_width  = width - s
@@ -163,7 +163,7 @@ top.getViewParams = ->
 	height  = height - 207
 	_params = getSatellaParams()
 
-	params = 
+	params =
 		width        : width
 		height       : height
 		x            : _params.x

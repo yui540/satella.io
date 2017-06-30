@@ -17,7 +17,7 @@ layer(
 			display: block;
 			width: 239px; height: 40px;
 			border-bottom: solid 1px #4c4c4c;
-			background-color: #313743;
+			background-color: #333;
 		}
 		:scope:after {
 			content: "";
@@ -36,7 +36,7 @@ layer(
 			width: 15px; height: 15px;
 			margin-top: 12.5px;
 			margin-left: 10px;
-			background-color: #4F5B66;
+			background-color: #555;
 			border-radius: 3px;
 			cursor: pointer;
 		}
@@ -48,7 +48,7 @@ layer(
 			background-position: center;
 			background-size: contain;
 			background-repeat: no-repeat;
-			background-color: #4F5B66;
+			background-color: #555;
 		}
 		:scope .name {
 			float: left;
@@ -58,7 +58,7 @@ layer(
 			background-position: center;
 			background-size: contain;
 			background-repeat: no-repeat;
-			background-color: #4F5B66;
+			background-color: #555;
 			font-size: 10px;
 			line-height: 30px;
 			color: #fff;

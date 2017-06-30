@@ -10,7 +10,7 @@ scroll-bar-side(
 		:scope {
 			position: relative;
 			display: block;
-			background-color: #4F5B66;
+			background-color: #555;
 			height: 15px;
 		}
 		:scope .bar {
@@ -18,7 +18,7 @@ scroll-bar-side(
 			top: 2px;
 			left: 2px;
 			height: 11px;
-			background-color: #2B303B;
+			background-color: #333;
 			cursor: pointer;
 			border-radius: 10px;
 		}
