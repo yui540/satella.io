@@ -12,9 +12,24 @@ layer-box(style="height:{ height }px")
 			position: relative;
 			display: block;
 			width: 239px;
+			display: none;
 		}
 
 	script(type="coffee").
+
+		##
+		# 表示
+		##
+		@active = ->
+			@root.style.display = 'block'
+			return true
+
+		##
+		# 非表示
+		##
+		@passive = ->
+			@root.style.display = 'none'
+			return true
 
 		##
 		# レイヤーの取得
@@ -57,3 +72,11 @@ layer-box(style="height:{ height }px")
 				@update()
 
 				satella.render()
+
+		# show project --------------------------------------
+		observer.on 'show-project', =>
+			@passive()
+
+		# show layer ----------------------------------------
+		observer.on 'show-layer', =>
+			@active()

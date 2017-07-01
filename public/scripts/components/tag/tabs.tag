@@ -13,7 +13,7 @@ tabs
 			width: 249px;
 			height: 30px;
 			display: block;
-			background-color: #4c4c4c;
+			background-color: #555;
 		}
 		:scope:after {
 			content: "";
@@ -29,7 +29,6 @@ tabs
 			font-size: 10px;
 			line-height: 30px;
 			text-align: center;
-			color: #ccc;
 			cursor: pointer;
 		}
 		:scope .tab:first-child { left: 0; }
@@ -45,7 +44,7 @@ tabs
 			font-size: 10px;
 			line-height: 30px;
 			text-align: center;
-			color: #ccc;
+			color: #999;
 		}
 		:scope .tab[data-state="active"] p {
 			color: #595DEF;

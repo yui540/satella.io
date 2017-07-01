@@ -2,6 +2,7 @@ project-area(style="height:{ _height }px")
 	tabs(tab="{ tab }", width="249")
 	div.box(style="height:{ box_height }px")
 		div.inner(style="height:{ box_height - 10 }px")
+			project-box
 			layer-box
 
 	style(scoped).
@@ -15,11 +16,12 @@ project-area(style="height:{ _height }px")
 		}
 		:scope .box {
 			width: 249px;
+			padding: 5px;
+			box-sizing: border-box;
 		}
 		:scope .box .inner {
 			position: relative;
 			width: 239px;
-			margin: 5px;
 			overflow: auto;
 		}
 
@@ -44,6 +46,4 @@ project-area(style="height:{ _height }px")
 			@_height    = (@height - 112) / 2
 			@box_height = @_height - 30
 			@update()
-
-
 

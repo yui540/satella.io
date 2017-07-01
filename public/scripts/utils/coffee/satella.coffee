@@ -577,18 +577,16 @@ class Satella
 	##
 	sort: (num, type) ->
 		axis = null
-		if type is 'up'
-			axis = num
-		else
-			axis = num - 1
+		if type is 'up' then axis = num
+		else                 axis = num - 1
 
 		a1 = axis + 1
 		a2 = axis
 
 		@model.layer.splice(
-			axis, 
-			2, 
-			@model.layer[a1], 
+			axis,
+			2,
+			@model.layer[a1],
 			@model.layer[a2]
 		)
 		@emit 'sort'
@@ -623,7 +621,7 @@ class Satella
 	# @param num  : 基準点の数
 	##
 	addParameter: (name, type, num) ->
-		@model.parameter.push 
+		@model.parameter.push
 			type  : type
 			num   : num
 			name  : name

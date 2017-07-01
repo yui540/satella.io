@@ -1,7 +1,9 @@
 parameter-area(style="height:{ _height }px")
-	tabs(tab="{ tab }", width="249")
+	tabs(tab="{ tab }")
 	div.box(style="height:{ b_height }px")
 		div.inner(style="height:{ b_height - 10 }px")
+			parameter-box
+			register-layer-box
 
 	style(scoped).
 		:scope {
@@ -14,10 +16,11 @@ parameter-area(style="height:{ _height }px")
 		}
 		:scope .box {
 			width: 249px;
+			padding: 5px;
+			box-sizing: border-box;
 		}
 		:scope .box .inner {
 			width: 239px;
-			margin: 5px;
 			overflow: auto;
 		}
 
