@@ -37,6 +37,8 @@ require '../components/js/register-layer-box'
 require '../components/js/window-area'
 require '../components/js/texture-window'
 require '../components/js/trim'
+require '../components/js/search-box'
+require '../components/js/user-box'
 
 ########################################################
 # Routing                                              #
