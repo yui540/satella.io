@@ -1,5 +1,5 @@
 title-bar
-	div.logo
+	a.logo(href="/")
 	div.search-box
 		input(type="text", placeholder="Search satella.io", class="search-keyword", size="20")
 		input(type="button", value="", class="search-btn")
@@ -16,6 +16,7 @@ title-bar
 			width: 100%;
 			height: 40px;
 			background-color: #222;
+			z-index: 5;
 		}
 		:scope:after {
 			content: ""; display: block; clear: both;
@@ -28,6 +29,7 @@ title-bar
 			background-size: 100%;
 			margin-top: 5px;
 			margin-left: 30px;
+			display: block;
 		}
 		:scope .search-box {
 			float: left;

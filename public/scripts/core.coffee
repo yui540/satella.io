@@ -2,9 +2,16 @@ top.Satella  = require '../utils/js/satella'
 top.View     = require '../utils/js/view'
 top.Sektch   = require '../utils/js/sketch'
 top.riot     = require 'riot'
+top.route    = require 'riot-route'
 top.observer = riot.observable()
 
-require '../components/js/application'
+require '../components/js/login'
+require '../components/js/top'
+require '../components/js/dashboard'
+require '../components/js/create'
+require '../components/js/user'
+require '../components/js/view'
+require '../components/js/search'
 require '../components/js/title-bar'
 require '../components/js/editor'
 require '../components/js/workspace'
@@ -31,10 +38,61 @@ require '../components/js/window-area'
 require '../components/js/texture-window'
 require '../components/js/trim'
 
+########################################################
+# Routing                                              #
+########################################################
+page = null
+route.start true
+route.base '/'
+
+# / ----------------------------------------------------
+route '/', ->
+	mountPage 'top'
+
+# /login -----------------------------------------------
+route '/login', ->
+	mountPage 'login'
+
+# /dashboard -------------------------------------------
+route '/dashboard', ->
+	mountPage 'dashboard'
+	
+# /create ----------------------------------------------
+route '/create', ->
+	mountPage 'create'
+
+# /editor ----------------------------------------------
+route '/editor', ->
+	mountPage 'editor'
+
+# /users/:name -----------------------------------------
+route '/users/*', (name) ->
+	mountPage 'user'
+
+# /search ----------------------------------------------
+route '/search..', ->
+	q = route.query().q
+	mountPage 'search'
+
+##
+# ページのマウント
+##
+mountPage = (component) ->
+	console.log 'change_page -> ' + component
+	if page isnt null
+		page[0].unmount true
+
+	size = getSize()
+	page = riot.mount component, size
+
+########################################################
+# Event                                                #
+########################################################
+
 # load -------------------------------------------------
 window.addEventListener 'load', ->
 	size = getSize()
-	riot.mount 'application', size
+	riot.mount 'title-bar'
 
 # resize -----------------------------------------------
 window.addEventListener 'resize', ->
