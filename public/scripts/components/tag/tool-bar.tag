@@ -2,13 +2,13 @@ tool-bar(style="height:{ height }px")
 	div.line
 	tool-icon(
 		iname="texture"
-		icon="/images/tool-icon/texture.png"
-		licon="/images/tool-icon/texture_l.png"
+		icon="/images/editor-page/tool-bar/texture.png"
+		licon="/images/editor-page/tool-bar/texture_l.png"
 	)
 	tool-icon(
 		iname="parameter"
-		icon="/images/tool-icon/param.png"
-		licon="/images/tool-icon/param_l.png"
+		icon="/images/editor-page/tool-bar/param.png"
+		licon="/images/editor-page/tool-bar/param_l.png"
 	)
 
 	style(scoped).

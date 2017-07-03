@@ -29,7 +29,7 @@ layer(
 			background-position: center;
 			background-size: 80%;
 			background-repeat: no-repeat;
-			background-image:url(/images/project/check.png);
+			background-image:url(/images/editor-page/project-area/check.png);
 		}
 		:scope .look {
 			float: left;

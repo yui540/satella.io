@@ -1,4 +1,4 @@
-top(
+login-page(
 	data-state="active"
 	style="width:{ width }px;height:{ _height }px"
 )

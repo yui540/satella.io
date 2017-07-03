@@ -5,15 +5,15 @@ top.riot     = require 'riot'
 top.route    = require 'riot-route'
 top.observer = riot.observable()
 
-require '../components/js/login'
-require '../components/js/top'
-require '../components/js/dashboard'
-require '../components/js/create'
-require '../components/js/user'
-require '../components/js/view'
-require '../components/js/search'
 require '../components/js/title-bar'
-require '../components/js/editor'
+require '../components/js/login-page'
+require '../components/js/top-page'
+require '../components/js/dashboard-page'
+require '../components/js/create-page'
+require '../components/js/user-page'
+require '../components/js/view-page'
+require '../components/js/search-page'
+require '../components/js/editor-page'
 require '../components/js/workspace'
 require '../components/js/status-bar'
 require '../components/js/tool-bar'
@@ -47,32 +47,36 @@ route.base '/'
 
 # / ----------------------------------------------------
 route '/', ->
-	mountPage 'top'
+	mountPage 'top-page'
 
 # /login -----------------------------------------------
 route '/login', ->
-	mountPage 'login'
+	mountPage 'login-page'
 
 # /dashboard -------------------------------------------
 route '/dashboard', ->
-	mountPage 'dashboard'
+	mountPage 'dashboard-page'
 	
 # /create ----------------------------------------------
 route '/create', ->
-	mountPage 'create'
+	mountPage 'create-page'
 
 # /editor ----------------------------------------------
 route '/editor', ->
-	mountPage 'editor'
+	mountPage 'editor-page'
 
 # /users/:name -----------------------------------------
 route '/users/*', (name) ->
-	mountPage 'user'
+	mountPage 'user-page'
+
+# /views/:name -----------------------------------------
+route '/views/*', (name) ->
+	mountPage 'view-page'
 
 # /search ----------------------------------------------
 route '/search..', ->
 	q = route.query().q
-	mountPage 'search'
+	mountPage 'search-page'
 
 ##
 # ページのマウント

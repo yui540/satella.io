@@ -26,7 +26,7 @@ tool-icon(onclick="{ onClick }")
 			border-radius: 50%;
 			transform: scale(0.0);
 		}
-		:scope[data-state="active"] .bg  { animation: active 0.3s ease 0s forwards; }
+		:scope[data-state="active"]  .bg { animation: active 0.3s ease 0s forwards; }
 		:scope[data-state="passive"] .bg { animation: passive 0.3s ease 0s forwards; }
 		:scope .icon {
 			position: absolute;
