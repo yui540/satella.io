@@ -13,7 +13,7 @@ login-page(
 			overflow: hidden;
 			z-index: 1;
 		}
-		:scope [data-state="active"] { animation: active-page 0.5s ease 0s forwards; }
+		:scope[data-state="active"] { animation: active-page 0.5s ease 0s forwards; }
 	
 	script(type="coffee").
 		

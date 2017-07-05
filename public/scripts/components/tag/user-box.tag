@@ -12,6 +12,9 @@ user-box
 			cursor: pointer;
 			display: block;
 		}
+		:scope:hover {
+			background-color: #333;
+		}
 		:scope .pulldown {
 			position: absolute;
 			top: 10px;
