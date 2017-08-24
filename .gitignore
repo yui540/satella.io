@@ -1,6 +1,2 @@
 node_modules/
 .DS_Store
-*.js
-*.html
-
-config/*.json

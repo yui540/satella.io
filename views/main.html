@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../css/font.css">
+	<link rel="stylesheet" type="text/css" href="../css/base.css">
+	<link rel="stylesheet" type="text/css" href="../css/main.css">
+	<title>satella.io</title>
+	<script src="../scripts/yuki540.js"></script>
+	<script type="text/javascript">
+	require('coffee-script/register');
+	require('../scripts/main.coffee');
+	</script>
+	<!-- style -->
+	<style id="app-style">
+	/**
+	 * application style
+	 */
+	</style>
+	<style id="view-style">
+	/**
+	 * view style
+	 */
+	</style>
+</head>
+<body>
+<div id="notification"><!-- notification --></div>
+<div id="help"><!-- help --></div>
+<div id="context-menu"><!-- context menu --></div>
+<div id="mode-navigator"><!-- mode navigator --></div>
+<div id="window">
+	<div id="add-parameter-view"><!-- add parameter view --></div>
+	<div id="add-keyframes-view"><!-- add keyframes view --></div>
+	<div id="add-image-view"><!-- add image view --></div>
+</div>
+<main id="application">
+	<header id="title-bar" class="area">
+		<div id="close-btn" class="btn"></div>
+		<div id="quit-btn" class="btn"></div>
+		<p id="app-name">satella.io</p>
+	</header>
+	<nav id="tool" class="area"><!-- tool --></nav>
+	<div id="work-space" class="area">
+		<div id="tabs"><!-- tabs --></div>
+		<div id="data-panel">
+			<div class="inner">
+				<div id="layer-panel"><!-- layer panel --></div>
+				<div id="project-panel"><!-- project panel --></div>
+			</div>
+		</div>
+		<div id="controls-panel"><!-- controls panel --></div>
+	</div>
+	<div id="parameter" class="area">
+		<div id="parameter-info"><!-- parameter info --></div>
+		<div id="parameter-panel"><!-- parameter panel --></div>
+	</div>
+	<div id="view" class="area">
+		<div id="status"><!-- status --></div>
+		<div id="display"><!-- display --></div>
+		<div id="controls" class="clear-both">
+			<div id="history"><!-- history --></div>
+			<div id="create-image"><!-- create image --></div>
+			<div id="put-keyframe"><!-- put keyframe --></div>
+			<div id="mode-controls"><!-- mode controls --></div>
+			<div id="save-btn"><!-- save btn --></div>
+			<div id="sdk-btn"><!-- sdk btn --></div>
+		</div>
+	</div>
+	<div id="side-bar" class="area"><!-- side bar --></div>
+	<div id="animation-panel" class="area"><!-- animation panel --></div>
+	<div id="timeline" class="area">
+		<div id="timeline-bar"><!-- timeline --></div>
+		<div id="timeline-scroll-bar"><!-- scroll bar --></div>
+	</div>
+</main>
+<canvas id="save-canvas" style="display: none;"></canvas>
+<canvas id="thumb-canvas" style="display: none;"></canvas>
+</body>
+</html>
