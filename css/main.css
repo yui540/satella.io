@@ -1,0 +1,164 @@
+#application {
+	position: fixed;
+	background-color: #4c4c4c;
+}
+.area { position: absolute; }
+
+/**
+ * title-bar
+ */
+#title-bar {
+	top: 0; left: 0;
+	background-color: #393939;
+	-webkit-user-select: none;
+	-webkit-app-region: drag;
+}
+#title-bar:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.btn {
+	float: left;
+	border-radius: 50%;
+	margin-left: 5px;
+	cursor: pointer;
+}
+#close-btn { 
+	position: relative;
+	width: 20px; height: 20px;
+	cursor: pointer;
+}
+#close-btn:before,
+#close-btn:after {
+	position: absolute;
+	top: 9.5px; left: 2.5px;
+	content: ""; display: block;
+	width: 15px; height: 1px;
+	background-color: #ccc;
+}
+#close-btn:before { transform: rotate(45deg); }
+#close-btn:after { transform: rotate(-45deg); }
+#quit-btn { 
+	position: relative;
+	width: 20px; height: 20px;
+	cursor: pointer;
+}
+#quit-btn:after {
+	position: absolute;
+	top: 9.5px; left: 2.5px;
+	content: ""; display: block;
+	width: 15px; height: 1px;
+	background-color: #ccc;
+}
+#app-name {
+	font-size: 12px; color: #999;
+	text-align: center; line-height: 20px;
+}
+
+/**
+ * 
+ */
+#tool {
+	top: 20px; left: 260px;
+	overflow: auto;
+}
+#tool:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/**
+ * work-space
+ */
+#work-space {
+	top: 20px; left: 0px;
+}
+
+/*** data-panel ***/
+#data-panel {
+	position: relative;
+	background-color: #292929;
+	border-right: solid 1px #4c4c4c;
+	box-sizing: border-box;
+	overflow: auto;
+}
+
+/**
+ * parameter
+ */
+#parameter {
+	top: 60px; left: 260px;
+	background-color: #393939;
+	border-right: solid 1px #4c4c4c;
+	box-sizing: border-box;
+}
+
+/**
+ * view
+ */
+#view {
+	top: 60px; right: 50px;
+	background-color: #292929;
+}
+
+/*** display ***/
+#display {
+	position: relative;
+	margin-left: 10px;
+	margin-bottom: 5px;
+}
+
+/*** controls ***/
+#controls {
+	margin-top: 10px;
+}
+
+/**
+ * side-bar 
+ */
+#side-bar {
+	top: 60px; right: 0;
+	background-color: #292929;
+	border-left: solid 1px #4c4c4c;
+	box-sizing: border-box;
+}
+.mode-tab {
+	width: 40px; height: 40px;
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	cursor: pointer;
+	background-size: 50%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+#current-mode { background-color: #292929; }
+
+.pointer { background-image: url(../img/mode/c_pointer.png); }
+
+/**
+ * timepanel
+ */
+#animation-panel {
+	bottom: 0; left: 0;
+	background-color: #292929;
+	border-right: solid 1px #4c4c4c;
+	border-top: solid 1px #4c4c4c;
+	box-sizing: border-box;
+}
+
+/**
+ * timepanel
+ */
+#timeline {
+	bottom: 0; right: 0;
+	background-color: #292929;
+	border-top: solid 1px #4c4c4c;
+	box-sizing: border-box;
+}
+#timeline-bar {
+	width: 100%;
+	height: 60px;
+	overflow: hidden;
+}

@@ -5,13 +5,12 @@
 
 さらなる進化にご期待を。
 
-旧バージョンは、下記のリンクをご覧ください。
-[https://github.com/yuki540net/satella.io/tree/eaecf755820888e712fc3955458c9ae711adddb3](https://github.com/yuki540net/satella.io/tree/eaecf755820888e712fc3955458c9ae711adddb3)
-
-![preview1](./__picture__/s1.png)
+![preview1](sample/s1.png)
 
 - satella.ioについての紹介ページ
   - [Qiita - Live2Dライクなオープンソースソフトウェアの開発](http://qiita.com/yuki540/items/87d4f960702672b829b8)
+- satella.ioのダウンロード
+  - [GitHub - Releases](https://github.com/yuki540net/satella.io/releases/tag/v0.0.1)
 - デモ動画
   - [Twitter - 「satella.io」のデモ動画](https://twitter.com/eriri_jp/status/828140972429029376)
 - 発表スライド
@@ -33,17 +32,17 @@ satella.ioは、これから「satella.pro」に改名し、Webサービスと�
 
 ## ポリゴンを制御することでキャラが動いているように見せる
 ### 瞬きを表現
-![preview2](./__picture__/s2.png)
+![preview2](sample/s2.png)
 
 ### 上下左右の動きを表現
-![preview3](./__picture__/s3.png)
+![preview3](sample/s3.png)
 
 ### 複数パターンの動きを生み出す
-![preview4](./__picture__/s4.png)
+![preview4](sample/s4.png)
 
 ## satella.ioのこれから
 Webブラウザで動作する「satella.pro」にご期待を。
-![preview5](./__picture__/s5.png)
+![preview5](sample/s5.png)
 
 ## ライセンスについて
 このソフトウェアは、MIT Lisenceのもとで公開されています。

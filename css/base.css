@@ -1,0 +1,277 @@
+/**
+ *
+ * base.css
+ *
+ * @version 1.0
+ * @author yuki540
+ * @github yuki540net
+ * @twitter eriri_jp
+ * @package aya
+ *
+ */
+html, body {
+	margin: 0;
+	padding: 0;
+	-ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+body {
+	font-family: 'Boku';
+	color: #4c4c4c;
+}
+
+img {
+	vertical-align: bottom;
+}
+
+a {
+	color: #ccc;
+	text-decoration: none;
+}
+
+h1, h2, h3, p, ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+}
+
+input, textarea {
+	-webkit-appearance: none;
+	border: none;
+	padding: 0;
+	border-radius: 0;
+}
+
+iframe {
+	border: none;
+}
+
+/*********************************************************
+ *
+ * パーツデザイン
+ *
+ *********************************************************/
+/*** タイトル ***/
+.title {
+	display: table;
+	width: 100%;
+}
+.title .inner {
+	display: table-cell;
+	vertical-align: middle;
+	font-size: 16px;
+	color: #aaa;
+	text-align: center;
+}
+
+/*** ツールバー ***/
+.tool-bar {
+	width: 100%;
+	height: 50px;
+}
+.tool-bar:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+.tool-li { float: right; }
+
+/*** パネル ***/
+.panel-light-type {
+	background-color: #fff;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+}
+.panel-dark-type {
+	background-color: #393939;
+	border: solid 1px #111;
+	border-radius: 5px;
+}
+
+/*** ボタン ***/
+.btn-blue-type {
+	color: #fff;
+	background-color: #1da1f2;
+	border: solid 1px #3b88c3;
+	border-radius: 5px;
+	display: table;
+	cursor: pointer;
+}
+.btn-light-type {
+	color: #4c4c4c;
+	background-color: #fff;
+	border: solid 1px #ccc;
+	border-radius: 5px;
+	display: table;
+	cursor: pointer;
+}
+.btn-dark-type {
+	color: #ccc;
+	background-color: #393939;
+	border: solid 1px #111;
+	border-radius: 5px;
+	display: table;
+	cursor: pointer;
+}
+.btn-inner {
+	font-size: 12px;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+/*** close-btn ***/
+.close-btn {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+}
+.close-btn:before,
+.close-btn:after {
+	position: absolute;
+	top: 24.5px;
+	left: 5px;
+	content: "";
+	display: block;
+	width: 40px;
+	height: 1px;
+	background-color: #fff;
+}
+.close-btn:before {
+	transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+}
+.close-btn:after {
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+.close-btn:hover {
+	transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+}
+
+/*** tool-btn ***/
+.tool-btn {
+	float: left;
+	height: 30px;
+	margin-top: 10px;
+	margin-right: 10px;
+	border: solid 1px #111;
+	background-color: #333;
+	border-radius: 5px;
+}
+.tool-btn:first-child { margin-left: 10px; }
+.tool-btn .btn-li {
+	position: relative;
+	float: left;
+	width: 50px;
+	height: 28px;
+	border-right: solid 1px #111;
+	cursor: pointer;
+	background-position: center;
+	background-size: auto 70%;
+	background-repeat: no-repeat;
+}
+.tool-btn .btn-li:first-child {
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+}
+.tool-btn .btn-li:last-child {
+	border-top-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-right: none;
+}
+.tool-btn .btn-li[data-state="active"] {
+	box-shadow: 0 0 15px rgb(0,100,255) inset;
+}
+
+/*********************************************************
+ *
+ * モーダルビュー
+ *
+ *********************************************************/
+.modal-view {
+	position: fixed;
+	top: -100%;
+	width: 100%;
+	height: 100%;
+	display: table;
+}
+.modal-view .inner {
+	display: table-cell;
+	vertical-align: middle;
+}
+.modal-view .inner .modal-view-box {
+	margin: 0 auto;
+}
+
+/*********************************************************
+ *
+ * アニメーション
+ *
+ *********************************************************/
+.animate03 {
+	transition: all 0.3s ease 0s;
+	-webkit-transition: all 0.3s ease 0s;
+}
+.animate08 {
+	transition: all 0.8s ease 0s;
+	-webkit-transition: all 0.8s ease 0s;
+}
+.animate10 {
+	transition: all 1.0s ease 0s;
+	-webkit-transition: all 1.0s ease 0s;
+}
+
+/*********************************************************
+ *
+ * 便利ツール
+ *
+ *********************************************************/
+/**
+ * サイズ調整
+ */
+.box-size {
+	box-sizing: border-box;
+}
+
+/**
+ * 背景画像
+ */
+.bg_img {
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+
+/**
+ * 回り込み回避
+ */
+.clear-both:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+/**
+ * 色
+ */
+.pink { color: #ed588d; }
+.orange { color: #ff8100; }
+.green { color: #86c351; }
+.blue { color: rgb(0,180,255); }
+.betty_red { color: #7F2F49; }
+
+.bg_pink { background-color: #ed588d; }
+.bg_orange { background-color: #ff8100; }
+.bg_green { background-color: #86c351; }
+.bg_blue { background-color: rgb(0,180,255); }
+.bg_betty_red { background-color: #7F2F49; }
