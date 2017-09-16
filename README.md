@@ -19,6 +19,27 @@
   - yuki540
   - [Twitter - @eriri_jp](https://twitter.com/eriri_jp)
   - [HP - yuki540.com](http://yuki540.com)
+  
+## セットアップ
+ベータ版なので不完全ですが、お試しで動かしたい方は下記の通りに試してください。
+
+#### clone
+```
+git clone https://github.com/yuki540net/satella.io.git && cd satella.io
+```
+
+#### yarn install
+```
+yarn install
+```
+
+#### 起動
+```
+yarn start
+```
+
+起動したら、右から２番目のアップロードボタンのようなアイコンのボタンをクリックし、satella.ioフォルダのmodel_dataを読み込んでください。
+これで、モデリングされたキャラが見られます。
 
 ## 「Live2Dライクなオープンソースソフトウェアの開発」という挑戦。
 
@@ -26,7 +47,7 @@
 
 3D技術の知識ゼロから始めたもので、お粗末な出来ですが、誰かにとっての技術的なヒントになることを祈ります。
 
-satella.ioは、これから「satella.pro」に改名し、Webサービスとして動作するように開発を進めています。
+satella.ioは、Webサービスとして動作するように開発を進めています。
 
 #### さらなる進化にご期待を。
 
@@ -41,7 +62,7 @@ satella.ioは、これから「satella.pro」に改名し、Webサービスと�
 ![preview4](sample/s4.png)
 
 ## satella.ioのこれから
-Webブラウザで動作する「satella.pro」にご期待を。
+Webブラウザで動作する「satella.io」にご期待を。
 ![preview5](sample/s5.png)
 
 ## ライセンスについて
