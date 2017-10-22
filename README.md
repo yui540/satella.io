@@ -1,9 +1,11 @@
 # satella.io
 「satella.io」は、Live2Dライクなオープンソースソフトウェアです。
 
-現在、Webサービスとしてブラウザで動作する「satella.pro」を開発中です。
+現在、Webサービスとしてブラウザで動作する「[satella.io](http://satella.io)」を開発中です。
 
-さらなる進化にご期待を。
+最新版のリポジトリは、2018/02/01のサービス開始とともに公開します。
+
+※現在公開しているのは、Electron版の過去のバージョンです。
 
 ![preview1](sample/s1.png)
 
@@ -62,7 +64,7 @@ satella.ioは、Webサービスとして動作するように開発を進めて�
 ![preview4](sample/s4.png)
 
 ## satella.ioのこれから
-Webブラウザで動作する「satella.io」にご期待を。
+Webブラウザで動作する「[satella.io](http://satella.io)」にご期待を。
 ![preview5](sample/s5.png)
 
 ## ライセンスについて
