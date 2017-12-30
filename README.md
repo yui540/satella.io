@@ -68,4 +68,4 @@ Webブラウザで動作する「[satella.io](http://satella.io)」にご期待�
 ![preview5](sample/s5.png)
 
 ## ライセンスについて
-このソフトウェアは、MIT Lisenceのもとで公開されています。
+このソフトウェアは、MIT Licenseのもとで公開されています。
