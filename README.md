@@ -1,5 +1,5 @@
 # satella.io
-「satella.io」は、Live2Dライクなオープンソースソフトウェアです。
+「satella.io」は、イラストに「命」を吹き込むソフトウェアです。
 
 現在、Webサービスとしてブラウザで動作する「[satella.io](http://satella.io)」を開発中です。
 
@@ -11,14 +11,9 @@
 
 ![preview1](sample/s1.png)
 
-- satella.ioについての紹介ページ
-  - [Qiita - Live2Dライクなオープンソースソフトウェアの開発](http://qiita.com/yuki540/items/87d4f960702672b829b8)
-- satella.ioのダウンロード
-  - [GitHub - Releases](https://github.com/yuki540net/satella.io/releases/tag/v0.0.1)
+
 - デモ動画
   - [Twitter - 「satella.io」のデモ動画](https://twitter.com/eriri_jp/status/828140972429029376)
-- 発表スライド
-  - [ニコナレ - Live2Dライクなオープンソースソフトウェアの開発](http://niconare.nicovideo.jp/watch/kn2342)
 - 開発者
   - yuki540
   - [Twitter - @eriri_jp](https://twitter.com/eriri_jp)
@@ -47,7 +42,7 @@ yarn start
 
 ## 「Live2Dライクなオープンソースソフトウェアの開発」という挑戦。
 
-オープンソースでないLive2Dような「イラストに命を吹き込む」技術を個人で開発し、オープンソースとして公開することは、私にとってとてもいい経験になりました。
+「イラストに命を吹き込む」技術を個人で開発し、オープンソースとして公開することは、私にとってとてもいい経験になりました。
 
 3D技術の知識ゼロから始めたもので、お粗末な出来ですが、誰かにとっての技術的なヒントになることを祈ります。
 
