@@ -1,7 +1,7 @@
 {
   "name": "satella_io",
   "version": "0.0.1",
-  "description": "Live2dライクなオープンソースソフトウェア「satella_io」",
+  "description": "イラストに「命」を吹き込むソフトウェア「satella_io」",
   "main": "core.js",
   "keywords": [
     "satella_io"
