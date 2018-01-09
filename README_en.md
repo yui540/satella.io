@@ -1,24 +1,24 @@
 # satella.io
- satella.io is a software who can bring life to your illustrations.
- At the moment, we are currently operating a web service on satella.io (http://satella.io)
+ satella.io is a software that brings life to illustrations.
+We are currently operating it as a web service on satella.io (http://satella.io)
 
-The release is planned for the 1st of february 2018 (01/02/2018) but, i want to learn proprely WebGL so the release might be postponed.
+The release is planned for the 1st of february 2018 (01/02/2018) but since I want to learn proprely WebGL the release might be postponed.
 
-If i can, i will keep updating the project for the sake of a good service.
+I will keep updating the project for the sake of a good service.
 
-※ We use a old version of Electron for the beta release.
+* We use a old version of Electron for the beta release.
 
 ![preview1](sample/s1.png)
 
 - Demo video
   - [Twitter - 「satella.io」のデモ動画](https://twitter.com/eriri_jp/status/828140972429029376)
-- Developper
+- Developer
   - yuki540
     - [Twitter - @eriri_jp](https://twitter.com/eriri_jp)
-      - [HP - yuki540.com](http://yuki540.com)
+      - [Site - yuki540.com](http://yuki540.com)
 
 ## Setup
-The project is on beta version so bugs might occur on the software. But, for people who want to try the software, please follow the instructions below.
+The project is on beta version so bugs might occur. But if you want to run it anyway please follow the instructions below.
 
 #### clone
 ```
@@ -34,19 +34,19 @@ yarn install
 ```
 yarn start
 ```
-If you start the software, click to second button on your right and select the model_data folder of satella.io. With that in mind, you will be able to see the model of the character.
+After starting the software, click the second button on your right and select the model_data folder of satella.io. It will display character model.
 
 ## The challenge to develop a "Live2D alike" software
 
-Craft and make an open software who "brings life to illustrations" make me feels that for me, it is a good experience.
+Crafting and making an open source software that "brings life to illustrations" is the feel I had making this, it is a good experience.
 
-I've learned 3D modeling techniques from scratch so it seems rough but i hope that it brings me differents ways of making software.
+I've learned 3D modeling techniques from scratch so it may seem rough but I hope that it brings me differents ways of making software.
 
-satella.io is a web service which i will pursue the development
+satella.io is a web service which I will keep working on.
 
 #### I expect that it evolves further.
 
-## The looks of the polygons moving throughout the character
+## How the polygons look moving throughout the character
 ### Wink expression
 ![preview2](sample/s2.png)
 
