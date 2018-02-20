@@ -11,7 +11,8 @@
 
 ![screenshot](screenshot/1.png)
 
-
+- 関連記事
+  - [satella.ioがMOONGIFTで紹介される](https://www.moongift.jp/2017/12/satella-io-%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E3%82%BD%E3%83%BC%E3%82%B9%E7%89%88live2d%EF%BC%81/)
 - 開発者
   - yuki540
   - [Twitter - @eriri_jp](https://twitter.com/eriri_jp)
